@@ -45,4 +45,19 @@ describe('Inverted World', () => {
 		battle.makeChoices('move splash', 'move spore');
 		assert.equal(battle.p1.active[0].status, 'slp');
 	});
+
+	it('should be Mega Malamar\'s ability after Mega Evolution', () => {
+		battle = common.createBattle([[
+			{ species: 'Malamar', ability: 'contrary', item: 'malamarite', moves: ['protect', 'spore'] },
+		], [
+			{ species: 'Ninjask', ability: 'swarm', moves: ['protect', 'spore'] },
+		]]);
+		battle.makeChoices('move protect mega', 'move protect');
+		assert.equal(battle.p1.active[0].species.id, 'malamarmega');
+		assert.equal(battle.p1.active[0].ability, 'invertedworld');
+
+		battle.makeChoices('move spore', 'move spore');
+		assert.equal(battle.p1.active[0].status, '');
+		assert.equal(battle.p2.active[0].status, 'slp');
+	});
 });
