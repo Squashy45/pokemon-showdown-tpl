@@ -13,4 +13,14 @@ export const Formats = [
 			'NatDex Mod',
 		],
 	},
+
+	{
+		name: "[Gen 9] October TPL Draft League",
+		mod: 'gen9',
+		ruleset: [
+			'Standard AG',
+			'NatDex Mod',
+			'Item Clause = 1',
+		],
+	},
 ];
