@@ -2305,4 +2305,12 @@ export const AbilitiesText: { [id: IDEntry]: AbilityText } = {
 
 		activate: "  [POKEMON] extends [MOVE] by 2 turns!",
 	},
+
+	// Custom abilities
+	// Add all new custom ability text below this line.
+	invertedworld: {
+		name: "Inverted World",
+		desc: "While this Pokemon is active, the Speed-based action order is reversed. If Trick Room is also active, the Speed-based action order is normal.",
+		shortDesc: "While active, reverses Speed order; Trick Room restores normal Speed order.",
+	},
 };

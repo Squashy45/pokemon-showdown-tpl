@@ -643,7 +643,8 @@ export class Pokemon {
 		let speed = this.getStat('spe', false, false);
 		const trickRoomCheck = this.battle.ruleTable.has('twisteddimensionmod') ?
 			!this.battle.field.getPseudoWeather('trickroom') : this.battle.field.getPseudoWeather('trickroom');
-		if (trickRoomCheck) {
+		const invertedWorldCheck = this.battle.getAllActive().some(pokemon => pokemon.hasAbility('invertedworld'));
+		if (!!trickRoomCheck !== invertedWorldCheck) {
 			speed = 10000 - speed;
 		}
 		return this.battle.trunc(speed, 13);

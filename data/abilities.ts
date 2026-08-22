@@ -5660,4 +5660,16 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		rating: 3,
 		num: -3,
 	},
+
+	// Custom abilities
+	// Add all new custom abilities below this line.
+	invertedworld: {
+		onStart(pokemon) {
+			this.add('-ability', pokemon, 'Inverted World');
+		},
+		flags: {},
+		name: "Inverted World",
+		rating: 4.5,
+		num: -4,
+	},
 };
