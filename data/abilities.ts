@@ -2863,7 +2863,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 		onSwitchIn(pokemon) {
 			this.add('-ability', pokemon, 'Neutralizing Gas');
 			pokemon.abilityState.ending = false;
-			const strongWeathers = ['desolateland', 'primordialsea', 'deltastream'];
+			const endOnSuppression = ['desolateland', 'primordialsea', 'deltastream', 'invertedworld'];
 			for (const target of this.getAllActive()) {
 				if (target.hasItem('Ability Shield')) {
 					this.add('-block', target, 'item: Ability Shield');
@@ -2880,7 +2880,7 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 					delete target.volatiles['slowstart'];
 					this.add('-end', target, 'Slow Start', '[silent]');
 				}
-				if (strongWeathers.includes(target.getAbility().id)) {
+				if (endOnSuppression.includes(target.getAbility().id)) {
 					this.singleEvent('End', this.dex.abilities.get(target.getAbility().id), target.abilityState, target, pokemon, 'neutralizinggas');
 				}
 			}
@@ -5666,6 +5666,21 @@ export const Abilities: import('../sim/dex-abilities').AbilityDataTable = {
 	invertedworld: {
 		onStart(pokemon) {
 			this.add('-ability', pokemon, 'Inverted World');
+			this.field.addPseudoWeather('invertedworld', pokemon, this.effect);
+		},
+		onEnd(pokemon) {
+			const otherHolder = this.getAllActive().some(target =>
+				target !== pokemon && target.hasAbility('invertedworld')
+			);
+			if (!otherHolder) this.field.removePseudoWeather('invertedworld');
+		},
+		condition: {
+			onFieldStart() {
+				this.add('-fieldstart', 'ability: Inverted World');
+			},
+			onFieldEnd() {
+				this.add('-fieldend', 'ability: Inverted World');
+			},
 		},
 		flags: {},
 		name: "Inverted World",

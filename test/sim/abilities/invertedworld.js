@@ -17,6 +17,8 @@ describe('Inverted World', () => {
 			{ species: 'Ninjask', ability: 'swarm', moves: ['spore'] },
 		]]);
 		battle.makeChoices('move spore', 'move spore');
+		assert(battle.field.getPseudoWeather('invertedworld'));
+		assert(battle.log.includes('|-fieldstart|ability: Inverted World'));
 		assert.equal(battle.p1.active[0].status, '');
 		assert.equal(battle.p2.active[0].status, 'slp');
 	});
@@ -42,6 +44,8 @@ describe('Inverted World', () => {
 		]]);
 		battle.makeChoices('switch 2', 'move spore');
 		assert.equal(battle.p1.active[0].species.id, 'magikarp');
+		assert.false(battle.field.getPseudoWeather('invertedworld'));
+		assert(battle.log.includes('|-fieldend|ability: Inverted World'));
 		battle.makeChoices('move splash', 'move spore');
 		assert.equal(battle.p1.active[0].status, 'slp');
 	});
@@ -55,9 +59,24 @@ describe('Inverted World', () => {
 		battle.makeChoices('move protect mega', 'move protect');
 		assert.equal(battle.p1.active[0].species.id, 'malamarmega');
 		assert.equal(battle.p1.active[0].ability, 'invertedworld');
+		assert(battle.field.getPseudoWeather('invertedworld'));
 
 		battle.makeChoices('move spore', 'move spore');
 		assert.equal(battle.p1.active[0].status, '');
 		assert.equal(battle.p2.active[0].status, 'slp');
+	});
+
+	it('should hide the field indicator while the ability is suppressed', () => {
+		battle = common.createBattle({ gameType: 'doubles' }, [[
+			{ species: 'Shuckle', ability: 'invertedworld', moves: ['protect'] },
+			{ species: 'Magikarp', ability: 'swiftswim', moves: ['protect'] },
+		], [
+			{ species: 'Ninjask', ability: 'swarm', moves: ['protect'] },
+			{ species: 'Koffing', ability: 'neutralizinggas', moves: ['protect'] },
+		]]);
+		assert.false(battle.field.getPseudoWeather('invertedworld'));
+
+		battle.p2.active[1].setAbility('levitate');
+		assert(battle.field.getPseudoWeather('invertedworld'));
 	});
 });
