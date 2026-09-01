@@ -7,7 +7,7 @@ $ErrorActionPreference = "Stop"
 $repo = Split-Path -Parent $PSScriptRoot
 Set-Location $repo
 
-git -c safe.directory="$repo" add -f config/config.js config/custom-formats.ts
+git -c safe.directory="$repo" add -A
 
 $status = git -c safe.directory="$repo" status --porcelain
 if (-not $status) {
