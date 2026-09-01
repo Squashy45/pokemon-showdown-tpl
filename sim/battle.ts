@@ -24,6 +24,8 @@ import { State } from './state';
 import { BattleQueue, type Action } from './battle-queue';
 import { BattleActions } from './battle-actions';
 import { Utils } from '../lib/utils';
+import * as fs from 'fs';
+import * as path from 'path';
 declare const __version: any;
 
 export type ChannelID = 0 | 1 | 2 | 3 | 4;
@@ -31,6 +33,45 @@ export type ChannelID = 0 | 1 | 2 | 3 | 4;
 export type ChannelMessages<T extends ChannelID | -1> = Record<T, string[]>;
 
 const splitRegex = /^\|split\|p([1234])\n(.*)\n(.*)|.+/gm;
+const ROOT_PATH = path.resolve(__dirname, __dirname.includes(`${path.sep}dist${path.sep}`) ? '../..' : '..');
+const PRIVATE_INPUT_LOG_PATH = path.join(ROOT_PATH, 'logs', 'private-inputs.jsonl');
+
+function logPrivateInput(battle: Battle, sideid: SideID, input: string) {
+	if (process.env.PS_PRIVATE_INPUT_TRACKER === '0' || (globalThis as any).Config?.nofswriting) return;
+
+	const side = battle.getSide(sideid);
+	const actions = side.choice.actions.map(action => ({
+		choice: action.choice,
+		pokemon: action.pokemon?.name,
+		species: action.pokemon?.species.name,
+		move: action.moveid,
+		targetLoc: action.targetLoc,
+		switchTarget: action.target?.name,
+		switchSpecies: action.target?.species.name,
+		mega: action.mega || action.megax || action.megay || undefined,
+		zmove: action.zmove || undefined,
+		maxMove: action.maxMove,
+		terastallize: action.terastallize,
+	}));
+	const record = {
+		time: new Date().toISOString(),
+		roomid: battle.id,
+		format: battle.format.id,
+		turn: battle.turn,
+		side: sideid,
+		player: side.name,
+		input,
+		actions,
+	};
+
+	try {
+		fs.mkdirSync(path.dirname(PRIVATE_INPUT_LOG_PATH), { recursive: true });
+		fs.appendFileSync(PRIVATE_INPUT_LOG_PATH, `${JSON.stringify(record)}\n`);
+		console.log(`[private-input] ${record.roomid} turn=${record.turn} ${record.player}: ${input}`);
+	} catch (err) {
+		console.error(`[private-input] failed to write ${PRIVATE_INPUT_LOG_PATH}:`, err);
+	}
+}
 
 export function extractChannelMessages<T extends ChannelID | -1>(message: string, channelIds: T[]): ChannelMessages<T> {
 	const channelIdSet = new Set(channelIds);
@@ -2996,6 +3037,7 @@ export class Battle {
 			side.emitChoiceError(`Incomplete choice: ${input} - missing other pokemon`);
 			return false;
 		}
+		logPrivateInput(this, sideid, input);
 		if (this.allChoicesDone()) this.commitChoices();
 		return true;
 	}
