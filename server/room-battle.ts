@@ -536,6 +536,7 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 	 */
 	score: number[] | null = null;
 	inputLog: string[] | null = null;
+	privateTeamPastesLogged = false;
 	turn = 0;
 	rqid = 1;
 	requestCount = 0;
@@ -1213,8 +1214,35 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 		if (!delayStart) {
 			Rooms.global.onCreateBattleRoom(users as User[], this.room, { rated: this.rated });
 			this.started = true;
+			void this.writePrivateTeamPastes();
 		} else if (delayStart === 'multi') {
 			this.room.add(`|uhtml|invites|<div class="broadcast broadcast-blue"><strong>This is a 4-player challenge battle</strong><br />The players will need to add more players before the battle can start.</div>`);
+		}
+	}
+
+	async writePrivateTeamPastes() {
+		if (this.privateTeamPastesLogged) return;
+		if (Config.nofswriting || process.env.PS_PRIVATE_TEAM_PASTES === '0') return;
+		this.privateTeamPastesLogged = true;
+
+		for (const player of this.players) {
+			if (!player.hasTeam) continue;
+			try {
+				const team = await this.getPlayerTeam(player);
+				if (!team) continue;
+				const record = {
+					time: new Date().toISOString(),
+					roomid: this.roomid,
+					format: this.format,
+					slot: player.slot,
+					player: player.name,
+					userid: player.id,
+					paste: Teams.export(team).trim(),
+				};
+				await Monitor.logPath('private-teams.jsonl').append(JSON.stringify(record) + '\n');
+			} catch (err) {
+				Monitor.error(`Failed to write private team paste for ${this.roomid}: ${err}`);
+			}
 		}
 	}
 
