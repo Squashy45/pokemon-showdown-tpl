@@ -8,4 +8,5 @@ $ErrorActionPreference = "Stop"
 Write-Host "Watching private battle inputs on $HostName"
 Write-Host "Press Ctrl+C to stop."
 
-ssh $HostName "mkdir -p /root/pokemon-showdown/logs && touch $LogPath && tail -f $LogPath"
+ssh $HostName "mkdir -p /root/pokemon-showdown/logs && touch $LogPath && tail -f $LogPath" |
+	node "$PSScriptRoot\tpl-format-private-inputs.mjs"

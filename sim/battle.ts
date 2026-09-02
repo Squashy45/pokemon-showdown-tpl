@@ -44,8 +44,10 @@ function logPrivateInput(battle: Battle, sideid: SideID, input: string) {
 		choice: action.choice,
 		pokemon: action.pokemon?.name,
 		species: action.pokemon?.species.name,
-		move: action.moveid,
+		move: action.moveid ? battle.dex.moves.get(action.moveid).name : undefined,
 		targetLoc: action.targetLoc,
+		targetSpecies: action.choice === 'move' && action.targetLoc && action.pokemon ?
+			action.pokemon.getAtLoc(action.targetLoc)?.species.name : undefined,
 		switchTarget: action.target?.name,
 		switchSpecies: action.target?.species.name,
 		mega: action.mega || action.megax || action.megay || undefined,
