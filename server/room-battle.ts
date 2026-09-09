@@ -55,6 +55,45 @@ const DISCONNECTION_BANK_TIME = 300;
 const TIMER_COOLDOWN = 20 * SECONDS;
 const LOCKDOWN_PERIOD = 30 * 60 * 1000; // 30 minutes
 
+function logPrivateInputUnlock(battle: RoomBattle, player: RoomBattlePlayer) {
+	if (Config.nofswriting || process.env.PS_PRIVATE_INPUT_TRACKER === '0') return;
+	const record = {
+		time: new Date().toISOString(),
+		event: 'unlock',
+		roomid: battle.roomid,
+		format: battle.format,
+		turn: battle.turn,
+		side: player.slot,
+		player: player.name,
+		input: 'undo',
+		actions: [],
+	};
+	void Monitor.logPath('private-inputs.jsonl').append(JSON.stringify(record) + '\n').catch(err => {
+		Monitor.error(`Failed to write private input unlock for ${battle.roomid}: ${err}`);
+	});
+}
+
+function logPrivateBattleState(battle: RoomBattle) {
+	if (Config.nofswriting || process.env.PS_PRIVATE_BATTLE_STATE === '0') return;
+	const record = {
+		time: new Date().toISOString(),
+		roomid: battle.roomid,
+		format: battle.format,
+		gameType: battle.gameType,
+		playerCap: battle.playerCap,
+		started: battle.started,
+		players: battle.players.map(player => ({
+			slot: player.slot,
+			player: player.name,
+			userid: player.id,
+			hasTeam: player.hasTeam,
+		})),
+	};
+	void Monitor.logPath('private-battles.jsonl').append(JSON.stringify(record) + '\n').catch(err => {
+		Monitor.error(`Failed to write private battle state for ${battle.roomid}: ${err}`);
+	});
+}
+
 export class RoomBattlePlayer extends RoomGamePlayer<RoomBattle> {
 	readonly slot: SideID;
 	readonly channelIndex: ChannelIndex;
@@ -591,6 +630,7 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 			const player = this.addPlayer(p?.user || null, p || null);
 			if (!player) throw new Error(`failed to create player ${i + 1} in ${room.roomid}`);
 		}
+		logPrivateBattleState(this);
 		if (options.inputLog) {
 			let scanIndex = 0;
 			for (const player of this.players) {
@@ -655,6 +695,7 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 			return;
 		}
 		request.isWait = false;
+		logPrivateInputUnlock(this, player);
 
 		void this.stream.write(`>${player.slot} undo`);
 	}
@@ -691,6 +732,7 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 		}
 
 		this.setPlayerUser(this[slot], user, playerOpts);
+		logPrivateBattleState(this);
 		if (validSlots.length - 1 <= 0) {
 			// all players have joined, start the battle
 			// onCreateBattleRoom crashes if some users are unavailable at start of battle
@@ -699,6 +741,7 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 			Rooms.global.onCreateBattleRoom(users, this.room, { rated: this.rated });
 			this.started = true;
 			this.room.add(`|uhtmlchange|invites|`);
+			logPrivateBattleState(this);
 		} else if (!this.started && this.invitesFull()) {
 			this.sendInviteForm(true);
 		}

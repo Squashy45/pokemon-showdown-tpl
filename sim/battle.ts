@@ -57,6 +57,7 @@ function logPrivateInput(battle: Battle, sideid: SideID, input: string) {
 	}));
 	const record = {
 		time: new Date().toISOString(),
+		event: 'lock',
 		roomid: battle.id,
 		format: battle.format.id,
 		turn: battle.turn,

@@ -4,6 +4,7 @@ import { PRNG, type PRNGSeed } from '../../../sim/prng';
 import { type RuleTable } from '../../../sim/dex-formats';
 import { Tags } from './../../tags';
 import { Teams } from '../../../sim/teams';
+import { TPL_RANDOM_BULLSHIT_TEAMS } from './tpl-random-bullshit-teams';
 
 export interface TeamData {
 	typeCount: { [k: string]: number };
@@ -265,6 +266,13 @@ export class RandomTeams {
 		) ? this.format.team + 'Team' : '';
 		// @ts-expect-error property access
 		return this[generatorName || 'randomTeam'](options);
+	}
+
+	randomTplRandomBullshitTeam(): PokemonSet[] {
+		const preset = this.sample(TPL_RANDOM_BULLSHIT_TEAMS);
+		const team = Teams.import(preset.paste);
+		if (!team) throw new Error(`Could not import TPL random bullshit team: ${preset.name}`);
+		return team;
 	}
 
 	randomChance(numerator: number, denominator: number) {

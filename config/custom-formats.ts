@@ -5,6 +5,16 @@ export const Formats = [
 	},
 
 	{
+		name: "[Gen 9] TPL Random Bullshit Ladder",
+		desc: "TPL doubles AG ladder using one randomly selected preset team.",
+		mod: 'gen9',
+		gameType: 'doubles',
+		team: 'randomTplRandomBullshit',
+		bestOfDefault: true,
+		ruleset: ['Standard AG', 'NatDex Mod'],
+	},
+
+	{
 		name: "[Gen 9] 2026 TPL Draft League",
 		mod: 'gen9',
 		gameType: 'multi',
