@@ -11,7 +11,7 @@ export const Formats = [
 		gameType: 'doubles',
 		team: 'randomTplRandomBullshit',
 		bestOfDefault: true,
-		ruleset: ['Standard AG', 'NatDex Mod'],
+		ruleset: ['Standard AG', 'NatDex Mod', 'Tera Type Preview'],
 	},
 
 	{
@@ -21,6 +21,7 @@ export const Formats = [
 		ruleset: [
 			'Standard AG',
 			'NatDex Mod',
+			'Tera Type Preview',
 		],
 	},
 
@@ -31,6 +32,7 @@ export const Formats = [
 		ruleset: [
 			'Standard AG',
 			'NatDex Mod',
+			'Tera Type Preview',
 			'Item Clause = 1',
 		],
 		unbanlist: [
