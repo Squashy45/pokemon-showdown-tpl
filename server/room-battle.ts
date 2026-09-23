@@ -741,6 +741,7 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 			const users = this.players.map(player => player.getUser()).filter(Boolean) as User[];
 			Rooms.global.onCreateBattleRoom(users, this.room, { rated: this.rated });
 			this.started = true;
+			void this.writePrivateTeamPastes();
 			this.room.add(`|uhtmlchange|invites|`);
 			logPrivateBattleState(this);
 		} else if (!this.started && this.invitesFull()) {
