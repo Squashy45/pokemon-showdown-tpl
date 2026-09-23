@@ -26,7 +26,8 @@ export const Formats = [
 	},
 
 	{
-		name: "[Gen 9] October TPL Draft League",
+		// These name markers select the matching legality table in the official web client.
+		name: "[Gen 9 Champions] NatDex October TPL Draft League",
 		mod: 'gen9',
 		gameType: 'doubles',
 		ruleset: [
