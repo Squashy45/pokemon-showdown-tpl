@@ -26,8 +26,7 @@ export const Formats = [
 	},
 
 	{
-		// These name markers select the matching legality table in the official web client.
-		name: "[Gen 9 Champions] NatDex October TPL Draft League",
+		name: "[Gen 9] NatDex October TPL Draft League",
 		mod: 'gen9',
 		gameType: 'doubles',
 		ruleset: [
@@ -40,6 +39,17 @@ export const Formats = [
 		checkCanLearn(move, species, setSources, set) {
 			const TeamValidator: typeof import('../sim/team-validator').TeamValidator =
 				require('../sim/team-validator').TeamValidator;
+			const natDex = TeamValidator.get('gen9nationaldexag');
+			const natDexSpecies = natDex.dex.species.get(species.id);
+			const natDexMove = natDex.dex.moves.get(move.id);
+			if (natDexSpecies.exists && natDexMove.exists && !natDex.checkCanLearn(
+				natDexMove,
+				natDexSpecies,
+				natDex.allSources(natDexSpecies),
+				set
+			)) {
+				return null;
+			}
 			const champions = TeamValidator.get('gen9championsdraft');
 			const championsSpecies = champions.dex.species.get(species.id);
 			const championsMove = champions.dex.moves.get(move.id);
@@ -145,6 +155,7 @@ export const Formats = [
 			'Drampa-Mega',
 			'Drampanite',
 			'Magearna-Mega',
+			'Magearna-Original-Mega',
 			'Magearnite',
 			'Zeraora-Mega',
 			'Zeraorite',
@@ -156,6 +167,9 @@ export const Formats = [
 			'Glimmoranite',
 			'Baxcalibur-Mega',
 			'Baxcalibrite',
+			'Tatsugiri-Curly-Mega',
+			'Tatsugiri-Droopy-Mega',
+			'Tatsugiri-Stretchy-Mega',
 		],
 	},
 ];
