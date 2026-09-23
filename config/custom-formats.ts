@@ -52,6 +52,19 @@ export const Formats = [
 				set
 			);
 		},
+		onModifyMovePriority: -1,
+		onModifyMove(move, pokemon) {
+			const baseMove = this.dex.moves.get(move.id);
+			if (pokemon.hasAbility('unseenfist') && move.flags['contact'] && baseMove.flags['protect']) {
+				move.flags['protect'] = 1;
+			}
+		},
+		onHitProtect(source, target, move) {
+			if (source.hasAbility('unseenfist') && move.flags['contact']) {
+				target.getMoveHitData(move).bypassProtect = source.getAbility();
+				return false;
+			}
+		},
 		unbanlist: [
 			'Raichu-Mega-X',
 			'Raichunite X',
