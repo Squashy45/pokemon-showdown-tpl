@@ -32,9 +32,26 @@ export const Formats = [
 		ruleset: [
 			'Standard AG',
 			'NatDex Mod',
+			'OM Unobtainable Moves',
 			'Tera Type Preview',
 			'Item Clause = 1',
 		],
+		checkCanLearn(move, species, setSources, set) {
+			const TeamValidator: typeof import('../sim/team-validator').TeamValidator =
+				require('../sim/team-validator').TeamValidator;
+			const champions = TeamValidator.get('gen9championsdraft');
+			const championsSpecies = champions.dex.species.get(species.id);
+			const championsMove = champions.dex.moves.get(move.id);
+			if (!championsSpecies.exists || !championsMove.exists) {
+				return this.checkCanLearn(move, species, setSources, set);
+			}
+			return champions.checkCanLearn(
+				championsMove,
+				championsSpecies,
+				champions.allSources(championsSpecies),
+				set
+			);
+		},
 		unbanlist: [
 			'Raichu-Mega-X',
 			'Raichunite X',
