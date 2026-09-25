@@ -6,821 +6,113 @@ export interface TPLRandomBullshitTeam {
 
 export const TPL_RANDOM_BULLSHIT_TEAMS: TPLRandomBullshitTeam[] = [
 	{
-		name: "Torkoal Sun",
-		source: "https://pokepast.es/1efcc0121f768994",
-		paste: `Torkoal @ Eject Pack
-Ability: Drought
-Tera Type: Water
-EVs: 232 HP / 252 SpA / 24 SpD
-Quiet Nature
-IVs: 0 Atk / 5 Spe
-- Solar Beam
-- Overheat
-- Eruption
-- Protect
-
-Charizard @ Life Orb
-Ability: Solar Power
-Tera Type: Ghost
-EVs: 4 Def / 252 SpA / 252 Spe
-Modest Nature
-IVs: 0 Atk
-- Solar Beam
-- Air Slash
-- Heat Wave
-- Protect
-
-Porygon2 @ Eviolite
-Ability: Trace
-Tera Type: Ground
-EVs: 180 HP / 84 Def / 140 SpA / 104 SpD
-Quiet Nature
-IVs: 0 Spe
-- Tera Blast
-- Tri Attack
-- Trick Room
-- Protect
-
-Venusaur-Mega @ Venusaurite
-Ability: Thick Fat
-EVs: 136 HP / 92 Def / 184 SpA / 96 SpD
-Quiet Nature
-IVs: 0 Atk
-- Giga Drain
-- Sludge Bomb
-- Leech Seed
-- Protect
-
-Jumpluff @ Mental Herb
-Ability: Chlorophyll
-EVs: 252 HP / 4 Def / 252 Spe
-Timid Nature
-IVs: 0 Atk
-- Tailwind
-- Sunny Day
-- Sleep Powder
-- Protect
-
-Ursaluna @ Flame Orb
-Ability: Guts
-Tera Type: Ghost
-EVs: 252 HP / 252 Atk / 4 SpD
-Brave Nature
-IVs: 0 Spe
-- Facade
-- Headlong Rush
-- Swords Dance
-- Protect`,
+		"name": "Las Vegas Latias Playoffs",
+		"source": "https://pokepast.es/227a2e7217a3442a",
+		"paste": "Kangaskhan-Mega (F) @ Kangaskhanite  \r\nAbility: Inner Focus  \r\nEVs: 248 HP / 88 Atk / 156 Def / 16 Spe  \r\nImpish Nature  \r\n- Fake Out  \r\n- Seismic Toss  \r\n- Crunch  \r\n- Protect  \r\n\r\nOgerpon-Hearthflame (F) @ Hearthflame Mask  \r\nAbility: Mold Breaker  \r\nEVs: 252 Atk / 4 SpD / 252 Spe  \r\nJolly Nature  \r\n- Follow Me  \r\n- Ivy Cudgel  \r\n- Power Whip  \r\n- Spiky Shield  \r\n\r\nShiftry @ Focus Sash  \r\nAbility: Wind Rider  \r\nTera Type: Normal  \r\nEVs: 4 HP / 252 Atk / 252 Spe  \r\nJolly Nature  \r\nIVs: 0 SpA  \r\n- Explosion  \r\n- Vacuum Wave  \r\n- Leaf Blade  \r\n- Knock Off  \r\n\r\nDrifblim @ Sitrus Berry  \r\nAbility: Unburden  \r\nTera Type: Fairy  \r\nEVs: 248 HP / 60 Def / 200 SpD  \r\nCalm Nature  \r\nIVs: 0 Atk  \r\n- Protect  \r\n- Tailwind  \r\n- Will-O-Wisp  \r\n- Thunder Wave  \r\n\r\nVolbeat @ Mental Herb  \r\nAbility: Prankster  \r\nTera Type: Fairy  \r\nEVs: 252 HP / 252 Def / 4 SpD  \r\nImpish Nature  \r\n- Thunder Wave  \r\n- Encore  \r\n- Sunny Day  \r\n- Play Rough  \r\n\r\nHeatran @ Weakness Policy  \r\nAbility: Flash Fire  \r\nTera Type: Grass  \r\nEVs: 4 HP / 252 SpA / 252 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Eruption  \r\n- Flash Cannon  \r\n- Heat Wave  \r\n- Protect",
 	},
 	{
-		name: "Archaludon Rain",
-		source: "https://pokepast.es/31cac1c8ae921629",
-		paste: `Archaludon @ Assault Vest
-Ability: Stamina
-Tera Type: Flying
-EVs: 248 HP / 8 SpA / 228 SpD / 24 Spe
-Modest Nature
-IVs: 0 Atk
-- Flash Cannon
-- Dragon Pulse
-- Body Press
-- Electro Shot
-
-Gyarados @ Gyaradosite
-Ability: Intimidate
-Tera Type: Water
-EVs: 212 HP / 252 Atk / 44 Spe
-Adamant Nature
-- Waterfall
-- Earthquake
-- Dragon Dance
-- Protect
-
-Zapdos @ Heavy-Duty Boots
-Ability: Static
-Tera Type: Steel
-EVs: 248 HP / 252 Def / 8 SpA
-Bold Nature
-IVs: 0 Atk
-- Hurricane
-- Thunder
-- Protect
-- Tailwind
-
-Amoonguss @ Sitrus Berry
-Ability: Regenerator
-Tera Type: Water
-EVs: 244 HP / 208 Def / 56 SpD
-Calm Nature
-IVs: 0 Atk / 28 Spe
-- Spore
-- Rage Powder
-- Pollen Puff
-- Clear Smog
-
-Barraskewda @ Choice Band
-Ability: Swift Swim
-Tera Type: Water
-EVs: 252 Atk / 4 Def / 252 Spe
-Adamant Nature
-- Liquidation
-- Flip Turn
-- Aqua Jet
-- Close Combat
-
-Pelipper @ Eject Button
-Ability: Drizzle
-Tera Type: Grass
-EVs: 252 HP / 48 Def / 52 SpD / 156 Spe
-Calm Nature
-IVs: 0 Atk
-- Weather Ball
-- Hurricane
-- Tailwind
-- Protect`,
+		"name": "Torkoal Team",
+		"source": "https://pokepast.es/1efcc0121f768994",
+		"paste": "Torkoal @ Eject Pack  \r\nAbility: Drought  \r\nTera Type: Water  \r\nEVs: 232 HP / 252 SpA / 24 SpD  \r\nQuiet Nature  \r\nIVs: 0 Atk / 5 Spe  \r\n- Solar Beam  \r\n- Overheat  \r\n- Eruption  \r\n- Protect  \r\n\r\nCharizard @ Life Orb  \r\nAbility: Solar Power  \r\nTera Type: Ghost  \r\nEVs: 4 Def / 252 SpA / 252 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Solar Beam  \r\n- Air Slash  \r\n- Heat Wave  \r\n- Protect  \r\n\r\nPorygon2 @ Eviolite  \r\nAbility: Trace  \r\nTera Type: Ground  \r\nEVs: 180 HP / 84 Def / 140 SpA / 104 SpD  \r\nQuiet Nature  \r\nIVs: 0 Spe  \r\n- Tera Blast  \r\n- Tri Attack  \r\n- Trick Room  \r\n- Protect  \r\n\r\nVenusaur-Mega @ Venusaurite  \r\nAbility: Thick Fat  \r\nEVs: 136 HP / 92 Def / 184 SpA / 96 SpD  \r\nQuiet Nature  \r\nIVs: 0 Atk  \r\n- Giga Drain  \r\n- Sludge Bomb  \r\n- Leech Seed  \r\n- Protect  \r\n\r\nJumpluff @ Mental Herb  \r\nAbility: Chlorophyll  \r\nEVs: 252 HP / 4 Def / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Tailwind  \r\n- Sunny Day  \r\n- Sleep Powder  \r\n- Protect  \r\n\r\nUrsaluna @ Flame Orb  \r\nAbility: Guts  \r\nTera Type: Ghost  \r\nEVs: 252 HP / 252 Atk / 4 SpD  \r\nBrave Nature  \r\nIVs: 0 Spe  \r\n- Facade  \r\n- Headlong Rush  \r\n- Swords Dance  \r\n- Protect",
 	},
 	{
-		name: "Zeraora Balance",
-		source: "https://pokepast.es/df38b05bfc706086",
-		paste: `Zeraora @ Life Orb
-Ability: Volt Absorb
-Tera Type: Electric
-EVs: 252 HP / 4 Atk / 252 Spe
-Jolly Nature
-- Fake Out
-- Plasma Fists
-- Close Combat
-- Volt Switch
-
-Enamorus @ Choice Specs
-Ability: Contrary
-Tera Type: Ground
-EVs: 252 SpA / 4 SpD / 252 Spe
-Modest Nature
-IVs: 0 Atk
-- Moonblast
-- Earth Power
-- Mystical Fire
-- Draining Kiss
-
-Hoopa-Unbound @ Assault Vest
-Ability: Magician
-Tera Type: Fairy
-EVs: 252 HP / 180 Def / 76 SpA
-Quiet Nature
-- Knock Off
-- Psychic Noise
-- Drain Punch
-- Thunderbolt
-
-Toxapex
-Ability: Merciless
-Tera Type: Poison
-EVs: 1 HP
-IVs: 0 Atk
-- Scald
-- Recover
-- Toxic
-- Baneful Bunker
-
-Ditto @ Choice Scarf
-Ability: Imposter
-Tera Type: Ghost
-EVs: 252 HP / 252 Def / 4 SpD
-Relaxed Nature
-IVs: 30 Atk / 0 Spe
-- Transform
-
-Tangela @ Eviolite
-Ability: Regenerator
-Tera Type: Grass
-EVs: 252 HP / 252 Def / 4 SpD
-Bold Nature
-- Giga Drain
-- Knock Off
-- Sludge Bomb
-- Sleep Powder`,
+		"name": "Thimble",
+		"source": "https://pokepast.es/31cac1c8ae921629",
+		"paste": "Archaludon @ Assault Vest  \r\nAbility: Stamina  \r\nTera Type: Flying  \r\nEVs: 248 HP / 8 SpA / 228 SpD / 24 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Flash Cannon  \r\n- Dragon Pulse  \r\n- Body Press  \r\n- Electro Shot  \r\n\r\nGyarados @ Gyaradosite  \r\nAbility: Intimidate  \r\nTera Type: Water  \r\nEVs: 212 HP / 252 Atk / 44 Spe  \r\nAdamant Nature  \r\n- Waterfall  \r\n- Earthquake  \r\n- Dragon Dance  \r\n- Protect  \r\n\r\nZapdos @ Heavy-Duty Boots  \r\nAbility: Static  \r\nTera Type: Steel  \r\nEVs: 248 HP / 252 Def / 8 SpA  \r\nBold Nature  \r\nIVs: 0 Atk  \r\n- Hurricane  \r\n- Thunder  \r\n- Protect  \r\n- Tailwind  \r\n\r\nAmoonguss @ Sitrus Berry  \r\nAbility: Regenerator  \r\nTera Type: Water  \r\nEVs: 244 HP / 208 Def / 56 SpD  \r\nCalm Nature  \r\nIVs: 0 Atk / 28 Spe  \r\n- Spore  \r\n- Rage Powder  \r\n- Pollen Puff  \r\n- Clear Smog  \r\n\r\nBarraskewda @ Choice Band  \r\nAbility: Swift Swim  \r\nTera Type: Water  \r\nEVs: 252 Atk / 4 Def / 252 Spe  \r\nAdamant Nature  \r\n- Liquidation  \r\n- Flip Turn  \r\n- Aqua Jet  \r\n- Close Combat  \r\n\r\nPelipper @ Eject Button  \r\nAbility: Drizzle  \r\nTera Type: Grass  \r\nEVs: 252 HP / 48 Def / 52 SpD / 156 Spe  \r\nCalm Nature  \r\nIVs: 0 Atk  \r\n- Weather Ball  \r\n- Hurricane  \r\n- Tailwind  \r\n- Protect",
 	},
 	{
-		name: "Galar Moltres Screens",
-		source: "https://pokepast.es/9b0bd495e1d0ee5a",
-		paste: `Moltres-Galar @ Sitrus Berry
-Ability: Berserk
-EVs: 252 HP / 4 Def / 252 SpA
-Quiet Nature
-IVs: 0 Atk
-- Fiery Wrath
-- Tailwind
-- Nasty Plot
-- Protect
-
-Grimmsnarl @ Light Clay
-Ability: Prankster
-Tera Type: Steel
-EVs: 252 HP / 128 Atk / 80 Def / 48 SpD
-Brave Nature
-- Spirit Break
-- Light Screen
-- Reflect
-- Protect
-
-Electabuzz @ Eviolite
-Ability: Static
-Tera Type: Flying
-EVs: 252 HP / 126 Def / 126 SpD / 4 Spe
-Calm Nature
-IVs: 0 Atk
-- Electroweb
-- Helping Hand
-- Follow Me
-- Protect
-
-Milotic @ Leftovers
-Ability: Marvel Scale
-Tera Type: Ground
-EVs: 156 HP / 100 Def / 252 SpA
-Quiet Nature
-IVs: 0 Atk
-- Muddy Water
-- Hypnosis
-- Coil
-- Protect
-
-Cresselia (F) @ Mental Herb
-Ability: Levitate
-EVs: 252 HP / 4 Def / 252 SpA
-Serious Nature
-IVs: 0 Atk / 0 Spe
-- Future Sight
-- Trick Room
-- Skill Swap
-- Protect
-
-Heatran @ Passho Berry
-Ability: Flash Fire
-Tera Type: Steel
-EVs: 252 HP / 4 Def / 252 SpA
-Quiet Nature
-IVs: 0 Atk / 0 Spe
-- Dragon Pulse
-- Flash Cannon
-- Heat Wave
-- Protect`,
+		"name": "Sand Balance",
+		"source": "https://pokepast.es/5448c22c0e57bf14",
+		"paste": "Tyranitar-Mega @ Tyranitarite  \r\nAbility: Sand Stream  \r\nTera Type: Rock  \r\nEVs: 252 HP / 24 Atk / 36 Def / 20 SpD / 176 Spe  \r\nAdamant Nature  \r\n- Knock Off  \r\n- Stone Edge  \r\n- Dragon Dance  \r\n- Protect  \r\n\r\nDracovish @ Choice Band  \r\nAbility: Sand Rush  \r\nTera Type: Ghost  \r\nEVs: 252 Atk / 4 SpD / 252 Spe  \r\nAdamant Nature  \r\n- Fishious Rend  \r\n- Psychic Fangs  \r\n- Dragon Rush  \r\n- Ice Fang  \r\n\r\nMarshadow @ Life Orb  \r\nAbility: Technician  \r\nTera Type: Steel  \r\nEVs: 252 Atk / 4 Def / 252 Spe  \r\nJolly Nature  \r\n- Spectral Thief  \r\n- Close Combat  \r\n- Shadow Sneak  \r\n- Protect  \r\n\r\nMetagross @ Leftovers  \r\nAbility: Clear Body  \r\nTera Type: Normal  \r\nEVs: 240 HP / 136 Def / 132 SpD  \r\nImpish Nature  \r\n- Cosmic Power  \r\n- Body Press  \r\n- Meteor Mash  \r\n- Protect  \r\n\r\nRillaboom @ Assault Vest  \r\nAbility: Grassy Surge  \r\nTera Type: Rock  \r\nEVs: 240 HP / 252 Atk / 16 SpD  \r\nAdamant Nature  \r\n- Fake Out  \r\n- Wood Hammer  \r\n- Grassy Glide  \r\n- U-turn  \r\n\r\nVolcarona @ Safety Goggles  \r\nAbility: Flame Body  \r\nTera Type: Dragon  \r\nEVs: 252 HP / 244 Def / 12 SpD  \r\nBold Nature  \r\n- Rage Powder  \r\n- Tailwind  \r\n- Overheat  \r\n- U-turn",
 	},
 	{
-		name: "Mega Gengar Perish",
-		source: "https://pokepast.es/8ed2351c668aea2e",
-		paste: `Gengar-Mega @ Gengarite
-Ability: Shadow Tag
-EVs: 2 HP / 32 SpA / 32 Spe
-Timid Nature
-- Protect
-- Perish Song
-- Disable
-- Shadow Ball
-
-Incineroar @ Lum Berry
-Ability: Intimidate
-EVs: 32 HP / 2 Def / 32 SpD
-Sassy Nature
-- Protect
-- Parting Shot
-- Fake Out
-- Throat Chop
-
-Sableye @ Sitrus Berry
-Ability: Prankster
-EVs: 32 HP / 2 Def / 32 SpD
-Careful Nature
-- Detect
-- Disable
-- Encore
-- Fake Out
-
-Primarina @ Leftovers
-Ability: Torrent
-EVs: 32 HP / 2 Def / 32 SpA
-Sassy Nature
-- Protect
-- Perish Song
-- Flip Turn
-- Moonblast
-
-Annihilape @ Kasib Berry
-Ability: Defiant
-EVs: 32 HP / 2 Atk / 32 SpD
-Sassy Nature
-- Protect
-- Encore
-- Rage Fist
-- Drain Punch
-
-Tinkaton @ Occa Berry
-Ability: Mold Breaker
-EVs: 32 HP / 2 Def / 32 Spe
-Impish Nature
-- Protect
-- Fake Out
-- Encore
-- Gigaton Hammer`,
+		"name": "Snorlax Team",
+		"source": "https://pokepast.es/5d8eb030d56fa916",
+		"paste": "Snorlax @ Iapapa Berry  \r\nAbility: Gluttony  \r\nTera Type: Ghost  \r\nEVs: 252 HP / 4 Atk / 126 Def / 126 SpD  \r\nBrave Nature  \r\n- Body Slam  \r\n- Belly Drum  \r\n- Recycle  \r\n- Protect  \r\n\r\nMimikyu @ Mental Herb  \r\nAbility: Disguise  \r\nEVs: 252 HP / 252 Atk / 4 Def  \r\nBrave Nature  \r\n- Shadow Claw  \r\n- Play Rough  \r\n- Trick Room  \r\n- Protect  \r\n\r\nStakataka @ Focus Sash  \r\nAbility: Beast Boost  \r\nTera Type: Flying  \r\nEVs: 176 HP / 252 Atk / 80 SpD  \r\nLonely Nature  \r\nIVs: 14 Def / 0 Spe  \r\n- Gyro Ball  \r\n- Rock Slide  \r\n- Trick Room  \r\n- Protect  \r\n\r\nTing-Lu @ Leftovers  \r\nAbility: Vessel of Ruin  \r\nTera Type: Fire  \r\nEVs: 252 HP / 252 Atk / 4 SpD  \r\nBrave Nature  \r\nIVs: 0 Spe  \r\n- Ruination  \r\n- Stomping Tantrum  \r\n- Fissure  \r\n- Protect  \r\n\r\nHonchkrow @ Life Orb  \r\nAbility: Moxie  \r\nEVs: 252 HP / 252 Atk / 4 Def  \r\nBrave Nature  \r\n- Brave Bird  \r\n- Foul Play  \r\n- Sucker Punch  \r\n- Protect  \r\n\r\nOgerpon-Wellspring (F) @ Wellspring Mask  \r\nAbility: Water Absorb  \r\nEVs: 252 HP / 252 Atk / 4 Def  \r\nBrave Nature  \r\n- Wood Hammer  \r\n- Ivy Cudgel  \r\n- Follow Me  \r\n- Spiky Shield",
 	},
 	{
-		name: "Iron Crown Psyspam",
-		source: "https://pokepast.es/285feb682fb34131",
-		paste: `Iron Crown @ Booster Energy
-Ability: Quark Drive
-Tera Type: Ground
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Tachyon Cutter
-- Expanding Force
-- Protect
-- Tera Blast
-
-Weezing-Galar @ Black Sludge
-Ability: Neutralizing Gas
-Tera Type: Poison
-EVs: 252 HP / 252 Def / 4 SpA
-Bold Nature
-- Toxic
-- Flamethrower
-- Protect
-- Substitute
-
-Tatsugiri @ Focus Sash
-Ability: Commander
-Tera Type: Stellar
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Draco Meteor
-- Muddy Water
-- Protect
-- Helping Hand
-
-Drifblim @ Psychic Seed
-Ability: Unburden
-Tera Type: Steel
-EVs: 248 HP / 8 Atk / 252 Spe
-Jolly Nature
-- Acrobatics
-- Minimize
-- Tailwind
-- Baton Pass
-
-Dondozo @ Leftovers
-Ability: Unaware
-Tera Type: Fairy
-EVs: 248 HP / 8 Atk / 252 Def
-Impish Nature
-- Earthquake
-- Order Up
-- Protect
-- Substitute
-
-Indeedee-F @ Mental Herb
-Ability: Psychic Surge
-Tera Type: Dragon
-EVs: 248 HP / 8 SpA / 252 SpD
-Sassy Nature
-- Dazzling Gleam
-- Follow Me
-- Helping Hand
-- Trick Room`,
+		"name": "Galar Moltres Team",
+		"source": "https://pokepast.es/fe49f2bb0a861638",
+		"paste": "Moltres-Galar @ Sitrus Berry  \r\nAbility: Berserk  \r\nEVs: 252 HP / 4 Def / 252 SpA  \r\nQuiet Nature  \r\nIVs: 0 Atk  \r\n- Fiery Wrath  \r\n- Tailwind  \r\n- Nasty Plot  \r\n- Protect  \r\n\r\nGrimmsnarl @ Light Clay  \r\nAbility: Prankster  \r\nTera Type: Steel  \r\nEVs: 252 HP / 128 Atk / 80 Def / 48 SpD  \r\nBrave Nature  \r\n- Spirit Break  \r\n- Light Screen  \r\n- Reflect  \r\n- Protect  \r\n\r\nElectabuzz @ Eviolite  \r\nAbility: Static  \r\nTera Type: Flying  \r\nEVs: 252 HP / 126 Def / 126 SpD / 4 Spe  \r\nCalm Nature  \r\nIVs: 0 Atk  \r\n- Electroweb  \r\n- Helping Hand  \r\n- Follow Me  \r\n- Protect  \r\n\r\nMilotic @ Leftovers  \r\nAbility: Competitive  \r\nTera Type: Ground  \r\nEVs: 156 HP / 100 Def / 252 SpA  \r\nQuiet Nature  \r\nIVs: 0 Atk  \r\n- Muddy Water  \r\n- Hypnosis  \r\n- Coil  \r\n- Protect  \r\n\r\nCresselia (F) @ Mental Herb  \r\nAbility: Levitate  \r\nEVs: 252 HP / 4 Def / 252 SpA  \r\nSerious Nature  \r\nIVs: 0 Atk / 0 Spe  \r\n- Psychic  \r\n- Trick Room  \r\n- Skill Swap  \r\n- Protect  \r\n\r\nHeatran @ Passho Berry  \r\nAbility: Flash Fire  \r\nTera Type: Steel  \r\nEVs: 252 HP / 4 Def / 252 SpA  \r\nQuiet Nature  \r\nIVs: 0 Atk / 0 Spe  \r\n- Dragon Pulse  \r\n- Flash Cannon  \r\n- Heat Wave  \r\n- Protect",
 	},
 	{
-		name: "Glimmora Gothitelle",
-		source: "https://pokepast.es/09555fa368bfd591",
-		paste: `Glimmora @ Focus Sash
-Ability: Toxic Debris
-Tera Type: Grass
-EVs: 4 Atk / 252 SpA / 252 Spe
-Naive Nature
-- Earth Power
-- Power Gem
-- Mortal Spin
-- Spiky Shield
-
-Wo-Chien @ Leftovers
-Ability: Tablets of Ruin
-Tera Type: Poison
-EVs: 252 HP / 4 SpA / 252 SpD
-Calm Nature
-- Leech Seed
-- Foul Play
-- Protect
-- Pollen Puff
-
-Gothitelle @ Sitrus Berry
-Ability: Shadow Tag
-Tera Type: Water
-EVs: 248 HP / 8 Atk / 252 SpD
-Sassy Nature
-- Fake Out
-- Psychic
-- Heal Pulse
-- Thunder Wave
-
-Palafin @ Mystic Water
-Ability: Zero to Hero
-Tera Type: Water
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Wave Crash
-- Jet Punch
-- Taunt
-- Protect
-
-Scream Tail @ Booster Energy
-Ability: Protosynthesis
-Tera Type: Grass
-EVs: 252 HP / 4 SpA / 252 Spe
-Timid Nature
-IVs: 0 Atk
-- Dazzling Gleam
-- Encore
-- Disable
-- Protect
-
-Volcarona @ Safety Goggles
-Ability: Flame Body
-Tera Type: Water
-EVs: 252 SpA / 4 SpD / 252 Spe
-Modest Nature
-- Quiver Dance
-- Heat Wave
-- Protect
-- Giga Drain`,
+		"name": "Charizard X Team",
+		"source": "https://pokepast.es/c8990b487c3bf84b",
+		"paste": "Charizard @ Charizardite X  \r\nAbility: Blaze  \r\nTera Type: Fire  \r\nEVs: 252 HP / 56 Atk / 124 Def / 76 SpD  \r\nAdamant Nature  \r\n- Flare Blitz  \r\n- Will-O-Wisp  \r\n- Protect  \r\n- Roost  \r\n\r\nRillaboom @ Assault Vest  \r\nAbility: Grassy Surge  \r\nTera Type: Fire  \r\nEVs: 252 HP / 252 Atk / 4 Spe  \r\nAdamant Nature  \r\n- Fake Out  \r\n- U-turn  \r\n- Wood Hammer  \r\n- Grassy Glide  \r\n\r\nTapu Fini @ Leftovers  \r\nAbility: Misty Surge  \r\nTera Type: Dragon  \r\nEVs: 252 HP / 64 Def / 136 SpA / 56 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Calm Mind  \r\n- Moonblast  \r\n- Protect  \r\n- Muddy Water  \r\n\r\nMew @ Sitrus Berry  \r\nAbility: Synchronize  \r\nTera Type: Dark  \r\nEVs: 232 HP / 24 SpA / 252 Spe  \r\nTimid Nature  \r\n- Ice Beam  \r\n- Pollen Puff  \r\n- Tailwind  \r\n- Fake Out  \r\n\r\nZeraora @ Assault Vest  \r\nAbility: Volt Absorb  \r\nTera Type: Grass  \r\nEVs: 248 HP / 68 SpD / 192 Spe  \r\nTimid Nature  \r\n- Fake Out  \r\n- Volt Switch  \r\n- Snarl  \r\n- Hidden Power [Ice]  \r\n\r\nLandorus @ Life Orb  \r\nAbility: Sheer Force  \r\nTera Type: Poison  \r\nEVs: 252 SpA / 4 SpD / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Sandsear Storm  \r\n- Earth Power  \r\n- Protect  \r\n- Sludge Bomb",
 	},
 	{
-		name: "Ogerpon Regi Room",
-		source: "https://pokepast.es/1d219917ffb6f61c",
-		paste: `Ogerpon-Hearthflame @ Hearthflame Mask
-Ability: Mold Breaker
-Tera Type: Fire
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Ivy Cudgel
-- Wood Hammer
-- Follow Me
-- Spiky Shield
-
-Regice @ Assault Vest
-Ability: Clear Body
-Tera Type: Fire
-EVs: 248 HP / 252 SpA / 8 SpD
-Modest Nature
-- Thunderbolt
-- Ice Beam
-- Icy Wind
-- Tera Blast
-
-Regidrago @ Dragon Fang
-Ability: Dragon's Maw
-Tera Type: Steel
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Draco Meteor
-- Dragon Energy
-- Tera Blast
-- Protect
-
-Cresselia @ Mental Herb
-Ability: Levitate
-Tera Type: Fairy
-EVs: 252 HP / 4 SpA / 252 SpD
-Sassy Nature
-- Lunar Blessing
-- Moonblast
-- Trick Room
-- Protect
-
-Tornadus @ Covert Cloak
-Ability: Prankster
-Tera Type: Dark
-EVs: 252 HP / 4 SpA / 252 SpD
-Calm Nature
-- Bleakwind Storm
-- Tailwind
-- Snowscape
-- Taunt
-
-Registeel @ Leftovers
-Ability: Clear Body
-Tera Type: Flying
-EVs: 252 HP / 4 Atk / 252 SpD
-Careful Nature
-- Heavy Slam
-- Iron Defense
-- Body Press
-- Protect`,
+		"name": "Chien-Pao Team",
+		"source": "https://pokepast.es/4ea69aa4afbe6de2",
+		"paste": "Chien-Pao @ Focus Sash  \r\nAbility: Sword of Ruin  \r\nTera Type: Ghost  \r\nEVs: 252 Atk / 4 SpA / 252 Spe  \r\nNaive Nature  \r\n- Icicle Crash  \r\n- Sucker Punch  \r\n- Icy Wind  \r\n- Protect  \r\n\r\nDragonite @ Choice Band  \r\nAbility: Inner Focus  \r\nTera Type: Normal  \r\nEVs: 92 HP / 252 Atk / 4 Def / 160 Spe  \r\nAdamant Nature  \r\n- Dual Wingbeat  \r\n- Extreme Speed  \r\n- Outrage  \r\n- Stomping Tantrum  \r\n\r\nScizor-Mega @ Scizorite  \r\nAbility: Technician  \r\nTera Type: Bug  \r\nEVs: 252 HP / 252 Atk / 4 SpD  \r\nAdamant Nature  \r\n- Swords Dance  \r\n- Bug Bite  \r\n- Bullet Punch  \r\n- Protect  \r\n\r\nBasculegion (M) @ Choice Band  \r\nAbility: Swift Swim  \r\nTera Type: Water  \r\nEVs: 252 Atk / 4 Def / 252 Spe  \r\nAdamant Nature  \r\n- Wave Crash  \r\n- Flip Turn  \r\n- Last Respects  \r\n- Aqua Jet  \r\n\r\nPolitoed @ Damp Rock  \r\nAbility: Drizzle  \r\nTera Type: Grass  \r\nEVs: 252 HP / 240 Def / 16 SpD  \r\nCalm Nature  \r\nIVs: 0 Atk  \r\n- Weather Ball  \r\n- Icy Wind  \r\n- Helping Hand  \r\n- Protect  \r\n\r\nLandorus @ Life Orb  \r\nAbility: Sheer Force  \r\nTera Type: Steel  \r\nEVs: 200 HP / 56 SpA / 252 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Earth Power  \r\n- Sandsear Storm  \r\n- Sludge Bomb  \r\n- Protect",
 	},
 	{
-		name: "Archaludon Politoed",
-		source: "https://pokepast.es/910bd10293ea8491",
-		paste: `Archaludon @ Mental Herb
-Ability: Sturdy
-Tera Type: Electric
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Protect
-- Electro Shot
-- Flash Cannon
-- Dragon Pulse
-
-Kingdra @ Life Orb
-Ability: Swift Swim
-Tera Type: Stellar
-EVs: 4 HP / 252 SpA / 252 Spe
-Modest Nature
-- Protect
-- Draco Meteor
-- Weather Ball
-- Muddy Water
-
-Politoed @ Leftovers
-Ability: Drizzle
-Tera Type: Grass
-EVs: 252 HP / 4 SpA / 252 SpD
-Calm Nature
-- Protect
-- Weather Ball
-- Perish Song
-- Encore
-
-Incineroar @ Safety Goggles
-Ability: Intimidate
-Tera Type: Ghost
-EVs: 252 HP / 4 Atk / 252 SpD
-Careful Nature
-- Fake Out
-- Knock Off
-- Parting Shot
-- Protect
-
-Gothitelle @ Sitrus Berry
-Ability: Shadow Tag
-Tera Type: Dark
-EVs: 248 HP / 8 Atk / 252 SpD
-Sassy Nature
-- Protect
-- Psychic
-- Fake Out
-- Trick Room
-
-Amoonguss @ Eject Button
-Ability: Regenerator
-Tera Type: Fairy
-EVs: 248 HP / 8 SpA / 252 SpD
-Calm Nature
-- Protect
-- Rage Powder
-- Spore
-- Pollen Puff`,
+		"name": "Urshifu-Rapid-Strike Team",
+		"source": "https://pokepast.es/b7708f93b33c4d37",
+		"paste": "Urshifu-Rapid-Strike @ Mystic Water  \r\nAbility: Unseen Fist  \r\nTera Type: Water  \r\nEVs: 252 HP / 252 Atk / 4 Spe  \r\nAdamant Nature  \r\n- Aqua Jet  \r\n- Surging Strikes  \r\n- Close Combat  \r\n- Protect  \r\n\r\nManectric @ Manectite  \r\nAbility: Lightning Rod  \r\nEVs: 252 HP / 4 SpA / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Thunderbolt  \r\n- Snarl  \r\n- Thunder Wave  \r\n- Protect  \r\n\r\nWeezing-Galar @ Leftovers  \r\nAbility: Neutralizing Gas  \r\nTera Type: Flying  \r\nEVs: 252 HP / 4 SpA / 252 SpD  \r\nCalm Nature  \r\nIVs: 0 Atk  \r\n- Dazzling Gleam  \r\n- Poison Gas  \r\n- Venom Drench  \r\n- Protect  \r\n\r\nSlaking @ Clear Amulet  \r\nAbility: Truant  \r\nTera Type: Ghost  \r\nEVs: 128 HP / 252 Atk / 128 SpD  \r\nAdamant Nature  \r\n- Return  \r\n- High Horsepower  \r\n- Knock Off  \r\n- Giga Impact  \r\n\r\nLatios @ Focus Sash  \r\nAbility: Levitate  \r\nTera Type: Fairy  \r\nEVs: 4 HP / 252 SpA / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Luster Purge  \r\n- Draco Meteor  \r\n- Tailwind  \r\n- Protect  \r\n\r\nAegislash @ Leftovers  \r\nAbility: Stance Change  \r\nTera Type: Water  \r\nEVs: 252 HP / 4 Def / 252 SpA  \r\nQuiet Nature  \r\nIVs: 0 Atk  \r\n- Shadow Ball  \r\n- Flash Cannon  \r\n- Wide Guard  \r\n- King's Shield",
 	},
 	{
-		name: "Sneasler Snow",
-		source: "https://pokepast.es/ad28318a61f7f345",
-		paste: `Sneasler @ Normal Gem
-Ability: Unburden
-Tera Type: Stellar
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Close Combat
-- Dire Claw
-- Fake Out
-- Taunt
-
-Ninetales-Alola @ Covert Cloak
-Ability: Snow Warning
-Tera Type: Water
-EVs: 252 SpA / 4 SpD / 252 Spe
-Timid Nature
-- Freeze-Dry
-- Icy Wind
-- Aurora Veil
-- Encore
-
-Sinistcha @ Rocky Helmet
-Ability: Hospitality
-Tera Type: Steel
-EVs: 252 HP / 252 Def / 4 SpA
-Bold Nature
-- Matcha Gotcha
-- Rage Powder
-- Life Dew
-- Psych Up
-
-Kommo-o @ Throat Spray
-Ability: Overcoat
-Tera Type: Fire
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Clanging Scales
-- Flamethrower
-- Clangorous Soul
-- Protect
-
-Arcanine @ Sitrus Berry
-Ability: Intimidate
-Tera Type: Grass
-EVs: 248 HP / 8 Atk / 252 SpD
-Sassy Nature
-- Flare Blitz
-- Snarl
-- Will-O-Wisp
-- Howl
-
-Samurott-Hisui @ Assault Vest
-Ability: Sharpness
-Tera Type: Ghost
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Aqua Cutter
-- Ceaseless Edge
-- Sucker Punch
-- Sacred Sword`,
+		"name": "Flutter Mane Team",
+		"source": "https://pokepast.es/88bdf7608f6043db",
+		"paste": "Flutter Mane @ Focus Sash  \r\nAbility: Protosynthesis  \r\nTera Type: Normal  \r\nEVs: 4 HP / 252 SpA / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Moonblast  \r\n- Icy Wind  \r\n- Perish Song  \r\n- Protect  \r\n\r\nIncineroar @ Covert Cloak  \r\nAbility: Intimidate  \r\nEVs: 252 HP / 252 Atk / 4 Spe  \r\nAdamant Nature  \r\n- Fake Out  \r\n- Flare Blitz  \r\n- Parting Shot  \r\n- Protect  \r\n\r\nGothitelle @ Sitrus Berry  \r\nAbility: Shadow Tag  \r\nTera Type: Dark  \r\nEVs: 252 HP / 68 Def / 132 SpD / 56 Spe  \r\nCalm Nature  \r\n- Psychic  \r\n- Taunt  \r\n- Fake Out  \r\n- Protect  \r\n\r\nScream Tail @ Booster Energy  \r\nAbility: Protosynthesis  \r\nShiny: Yes  \r\nTera Type: Dark  \r\nEVs: 164 HP / 60 Def / 60 SpD / 224 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Encore  \r\n- Disable  \r\n- Perish Song  \r\n- Protect  \r\n\r\nKoraidon @ Life Orb  \r\nAbility: Orichalcum Pulse  \r\nTera Type: Fire  \r\nEVs: 136 HP / 252 Atk / 120 Spe  \r\nAdamant Nature  \r\n- Collision Course  \r\n- Flare Blitz  \r\n- Flame Charge  \r\n- Protect  \r\n\r\nAmoonguss @ Rocky Helmet  \r\nAbility: Regenerator  \r\nTera Type: Ground  \r\nEVs: 252 HP / 86 Def / 84 SpA / 86 SpD  \r\nIVs: 0 Atk  \r\n- Sludge Bomb  \r\n- Spore  \r\n- Rage Powder  \r\n- Protect",
 	},
 	{
-		name: "Future Paradox",
-		source: "https://pokepast.es/20dc1da120c1d761",
-		paste: `Iron Thorns @ Booster Energy
-Ability: Quark Drive
-Tera Type: Flying
-EVs: 128 HP / 252 Atk / 128 Spe
-Serious Nature
-- Rock Slide
-- Supercell Slam
-- Swords Dance
-- Protect
-
-Iron Valiant @ Booster Energy
-Ability: Quark Drive
-Tera Type: Normal
-EVs: 128 HP / 252 SpA / 128 Spe
-Serious Nature
-IVs: 0 Atk
-- Moonblast
-- Focus Blast
-- Calm Mind
-- Protect
-
-Iron Hands @ Booster Energy
-Ability: Quark Drive
-Tera Type: Flying
-EVs: 128 HP / 252 Atk / 128 Spe
-Serious Nature
-- Drain Punch
-- Wild Charge
-- Fake Out
-- Protect
-
-Iron Jugulis @ Booster Energy
-Ability: Quark Drive
-Tera Type: Ground
-EVs: 128 HP / 252 SpA / 128 Spe
-Serious Nature
-IVs: 0 Atk
-- Dark Pulse
-- Hurricane
-- Flamethrower
-- Protect
-
-Iron Moth @ Booster Energy
-Ability: Quark Drive
-Tera Type: Flying
-EVs: 128 HP / 252 SpA / 128 Spe
-Serious Nature
-IVs: 0 Atk
-- Sludge Wave
-- Heat Wave
-- Acid Spray
-- Protect
-
-Iron Crown @ Booster Energy
-Ability: Quark Drive
-Tera Type: Water
-EVs: 128 HP / 252 SpA / 128 Spe
-Serious Nature
-IVs: 20 Atk
-- Psychic
-- Flash Cannon
-- Future Sight
-- Protect`,
+		"name": "Mega Swampert Team",
+		"source": "https://pokepast.es/f45a949837f92c2b",
+		"paste": "Swampert-Mega @ Swampertite  \r\nAbility: Swift Swim  \r\nTera Type: Water  \r\n- Aqua Tail  \r\n- Earthquake  \r\n- Knock Off  \r\n- Protect  \r\n\r\nOgerpon-Wellspring (F) @ Wellspring Mask  \r\nAbility: Water Absorb  \r\nTera Type: Water  \r\n- Ivy Cudgel  \r\n- Horn Leech  \r\n- Follow Me  \r\n- Protect  \r\n\r\nUrshifu-Rapid-Strike @ Mystic Water  \r\nAbility: Unseen Fist  \r\nTera Type: Water  \r\n- Surging Strikes  \r\n- Close Combat  \r\n- Aqua Jet  \r\n- Protect  \r\n\r\nKyogre-Primal @ Blue Orb  \r\nAbility: Primordial Sea  \r\nTera Type: Water  \r\nIVs: 0 Atk  \r\n- Water Spout  \r\n- Hydro Pump  \r\n- Ice Beam  \r\n- Protect  \r\n\r\nPrimarina @ Primarium Z  \r\nAbility: Liquid Voice  \r\nTera Type: Water  \r\nIVs: 0 Atk  \r\n- Sparkling Aria  \r\n- Moonblast  \r\n- Hyper Voice  \r\n- Protect  \r\n\r\nKingdra @ Choice Specs  \r\nAbility: Swift Swim  \r\nTera Type: Water  \r\nIVs: 0 Atk  \r\n- Draco Meteor  \r\n- Hydro Pump  \r\n- Weather Ball  \r\n- Surf",
 	},
 	{
-		name: "Mega Lopunny Offense",
-		source: "https://pokepast.es/e3246744628bf50d",
-		paste: `Lopunny-Mega @ Lopunnite
-Ability: Scrappy
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Fake Out
-- Giga Impact
-- Close Combat
-- Encore
-
-Dragapult @ Choice Band
-Ability: Clear Body
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Dragon Darts
-- Phantom Force
-- Psychic Fangs
-- U-turn
-
-Samurott-Hisui @ Life Orb
-Ability: Sharpness
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Aqua Cutter
-- Night Slash
-- Sacred Sword
-- Protect
-
-Togekiss @ Scope Lens
-Ability: Super Luck
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-IVs: 0 Atk
-- Dazzling Gleam
-- Air Slash
-- Tailwind
-- Detect
-
-Kartana @ Focus Sash
-Ability: Beast Boost
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Leaf Blade
-- Smart Strike
-- Sacred Sword
-- Protect
-
-Darmanitan-Galar @ Choice Scarf
-Ability: Gorilla Tactics
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Icicle Crash
-- Flare Blitz
-- Rock Slide
-- U-turn`,
+		"name": "Sylveon Team",
+		"source": "https://pokepast.es/180e51cd7edd869f",
+		"paste": "Sylveon @ Throat Spray  \r\nAbility: Pixilate  \r\nTera Type: Ghost  \r\nEVs: 252 HP / 252 SpA / 4 SpD  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Shadow Ball  \r\n- Hyper Voice  \r\n- Calm Mind  \r\n- Protect  \r\n\r\nUmbreon @ Life Orb  \r\nAbility: Inner Focus  \r\nEVs: 252 HP / 252 SpA / 4 SpD  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Alluring Voice  \r\n- Weather Ball  \r\n- Snarl  \r\n- Protect  \r\n\r\nVaporeon @ Leftovers  \r\nAbility: Hydration  \r\nTera Type: Steel  \r\nEVs: 252 HP / 126 Def / 126 SpD / 4 Spe  \r\nIVs: 0 Atk  \r\n- Stored Power  \r\n- Rain Dance  \r\n- Rest  \r\n- Calm Mind  \r\n\r\nJolteon @ Life Orb  \r\nAbility: Volt Absorb  \r\nEVs: 124 HP / 252 SpA / 132 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Weather Ball  \r\n- Thunder  \r\n- Wish  \r\n- Protect  \r\n\r\nLeafeon @ Sitrus Berry  \r\nAbility: Chlorophyll  \r\nTera Type: Water  \r\nEVs: 252 HP / 252 Atk / 4 Spe  \r\nAdamant Nature  \r\n- Leech Seed  \r\n- Synthesis  \r\n- Solar Blade  \r\n- Protect  \r\n\r\nFlareon @ Sitrus Berry  \r\nAbility: Flash Fire  \r\nEVs: 108 HP / 252 Atk / 100 SpD / 48 Spe  \r\nAdamant Nature  \r\n- Wish  \r\n- Flare Blitz  \r\n- Sunny Day  \r\n- Protect",
 	},
 	{
-		name: "Mega Slowbro Stall",
-		source: "https://pokepast.es/811d208762fea61c",
-		paste: `Slowbro-Mega @ Slowbronite
-Ability: Shell Armor
-EVs: 252 HP / 4 Def / 252 SpD
-Calm Nature
-IVs: 0 Atk
-- Slack Off
-- Body Press
-- Iron Defense
-- Protect
-
-Snorlax @ Iapapa Berry
-Ability: Thick Fat
-EVs: 252 HP / 130 Def / 126 SpD
-Serious Nature
-- Body Slam
-- Belly Drum
-- Recycle
-- Protect
-
-Wo-Chien @ Leftovers
-Ability: Tablets of Ruin
-EVs: 252 HP / 144 Def / 112 SpD
-Calm Nature
-IVs: 0 Atk
-- Snarl
-- Leech Seed
-- Ingrain
-- Protect
-
-Toxapex @ Leftovers
-Ability: Merciless
-Tera Type: Ghost
-EVs: 252 HP / 128 Def / 128 SpD
-IVs: 0 Atk
-- Hex
-- Recover
-- Toxic
-- Baneful Bunker
-
-Alomomola @ Leftovers
-Ability: Healer
-EVs: 252 HP / 126 Def / 126 SpD / 4 Spe
-- Scald
-- Flip Turn
-- Wish
-- Protect
-
-Clodsire @ Leftovers
-Ability: Unaware
-EVs: 252 HP / 224 Def / 32 SpD
-- Gunk Shot
-- Recover
-- Toxic
-- Protect`,
+		"name": "PG Tips",
+		"source": "https://pokepast.es/8577d73fe714ed3e",
+		"paste": "Doncon 3.0 (Kyogre-Primal) @ Blue Orb  \r\nAbility: Primordial Sea  \r\nEVs: 252 SpA / 4 SpD / 252 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Origin Pulse  \r\n- Calm Mind  \r\n- Ice Beam  \r\n- Protect  \r\n\r\nEarl Grey (Sinistcha) @ Sitrus Berry  \r\nAbility: Hospitality  \r\nEVs: 252 HP / 32 Def / 220 SpD  \r\nBold Nature  \r\nIVs: 0 Atk  \r\n- Rage Powder  \r\n- Matcha Gotcha  \r\n- Strength Sap  \r\n- Life Dew  \r\n\r\nMasala Chai (Sinistcha) @ Colbur Berry  \r\nAbility: Hospitality  \r\nTera Type: Dark  \r\nEVs: 252 HP / 32 Def / 220 SpD  \r\nBold Nature  \r\nIVs: 0 Atk  \r\n- Rage Powder  \r\n- Matcha Gotcha  \r\n- Strength Sap  \r\n- Life Dew  \r\n\r\nOolong (Sinistcha) @ Coba Berry  \r\nAbility: Hospitality  \r\nTera Type: Ground  \r\nEVs: 252 HP / 32 Def / 220 SpD  \r\nBold Nature  \r\nIVs: 0 Atk  \r\n- Rage Powder  \r\n- Matcha Gotcha  \r\n- Strength Sap  \r\n- Life Dew  \r\n\r\nChamomile (Sinistcha) @ Kasib Berry  \r\nAbility: Hospitality  \r\nTera Type: Fairy  \r\nEVs: 252 HP / 32 Def / 220 SpD  \r\nBold Nature  \r\nIVs: 0 Atk  \r\n- Rage Powder  \r\n- Matcha Gotcha  \r\n- Strength Sap  \r\n- Life Dew  \r\n\r\nHibiscus (Sinistcha) @ Yache Berry  \r\nAbility: Hospitality  \r\nTera Type: Steel  \r\nEVs: 252 HP / 32 Def / 220 SpD  \r\nBold Nature  \r\nIVs: 0 Atk  \r\n- Rage Powder  \r\n- Matcha Gotcha  \r\n- Strength Sap  \r\n- Life Dew",
+	},
+	{
+		"name": "Brute Bonnet Team",
+		"source": "https://pokepast.es/5eae5f587e124720",
+		"paste": "Brute Bonnet @ Sitrus Berry  \r\nAbility: Protosynthesis  \r\nTera Type: Fire  \r\nEVs: 252 HP / 4 Atk / 144 Def / 108 SpD  \r\nAdamant Nature  \r\n- Seed Bomb  \r\n- Sucker Punch  \r\n- Rage Powder  \r\n- Protect  \r\n\r\nRaging Bolt @ Assault Vest  \r\nAbility: Protosynthesis  \r\nTera Type: Fairy  \r\nEVs: 252 HP / 252 SpA / 4 SpD  \r\nModest Nature  \r\n- Thunderclap  \r\n- Draco Meteor  \r\n- Tera Blast  \r\n- Rising Voltage  \r\n\r\nFlutter Mane @ Focus Sash  \r\nAbility: Protosynthesis  \r\nEVs: 4 HP / 252 SpA / 252 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Shadow Ball  \r\n- Dazzling Gleam  \r\n- Imprison  \r\n- Trick Room  \r\n\r\nRoaring Moon @ Booster Energy  \r\nAbility: Protosynthesis  \r\nTera Type: Steel  \r\nEVs: 252 HP / 128 Atk / 128 Spe  \r\nAdamant Nature  \r\n- Knock Off  \r\n- Breaking Swipe  \r\n- Tailwind  \r\n- Protect  \r\n\r\nGouging Fire @ Booster Energy  \r\nAbility: Protosynthesis  \r\nTera Type: Fairy  \r\nEVs: 252 Atk / 4 SpD / 252 Spe  \r\nJolly Nature  \r\n- Dragon Tail  \r\n- Dragon Claw  \r\n- Heat Crash  \r\n- Protect  \r\n\r\nScream Tail @ Booster Energy  \r\nAbility: Protosynthesis  \r\nTera Type: Fire  \r\nEVs: 252 HP / 4 Def / 252 SpA  \r\nModest Nature  \r\nIVs: 0 Atk / 15 SpD / 23 Spe  \r\n- Dazzling Gleam  \r\n- Encore  \r\n- Disable  \r\n- Protect",
+	},
+	{
+		"name": "Nidoking Team",
+		"source": "https://pokepast.es/551a27a27476640e",
+		"paste": "Nidoking @ Life Orb  \r\nAbility: Sheer Force  \r\nTera Type: Stellar  \r\nEVs: 20 HP / 64 Atk / 252 SpA / 172 Spe  \r\nNaive Nature  \r\n- Shadow Ball  \r\n- Superpower  \r\n- Earth Power  \r\n- Protect  \r\n\r\nMilotic @ Blunder Policy  \r\nAbility: Competitive  \r\nTera Type: Ground  \r\nEVs: 164 HP / 20 Atk / 252 Def / 72 SpD  \r\nImpish Nature  \r\n- Waterfall  \r\n- Hypnosis  \r\n- Dragon Dance  \r\n- Protect  \r\n\r\nNecrozma-Dawn-Wings @ Power Herb  \r\nAbility: Prism Armor  \r\nEVs: 252 HP / 4 Def / 252 SpA  \r\nQuiet Nature  \r\nIVs: 0 Atk / 0 Spe  \r\n- Meteor Beam  \r\n- Moongeist Beam  \r\n- Trick Room  \r\n- Protect  \r\n\r\nIncineroar @ Sitrus Berry  \r\nAbility: Intimidate  \r\nEVs: 252 HP / 132 Def / 124 SpD  \r\nRelaxed Nature  \r\n- Flare Blitz  \r\n- Fake Out  \r\n- Parting Shot  \r\n- Protect  \r\n\r\nPrimarina @ Throat Spray  \r\nAbility: Liquid Voice  \r\nEVs: 252 HP / 252 SpA / 4 SpD  \r\nQuiet Nature  \r\nIVs: 0 Atk / 0 Spe  \r\n- Moonblast  \r\n- Hyper Voice  \r\n- Blizzard  \r\n- Protect  \r\n\r\nGholdengo @ Focus Sash  \r\nAbility: Good as Gold  \r\nEVs: 4 HP / 252 SpA / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Make It Rain  \r\n- Shadow Ball  \r\n- Nasty Plot  \r\n- Protect",
+	},
+	{
+		"name": "Crown Psyspam by Zee",
+		"source": "https://pokepast.es/486a1cba03d41729",
+		"paste": "cXz (Indeedee-F) @ Sitrus Berry  \r\nAbility: Psychic Surge  \r\nShiny: Yes  \r\nTera Type: Fairy  \r\nEVs: 252 HP / 176 Def / 80 SpD  \r\nBold Nature  \r\nIVs: 0 Atk  \r\n- Follow Me  \r\n- Helping Hand  \r\n- Trick Room  \r\n- Psychic  \r\n\r\n~metal dream (Iron Crown) @ Booster Energy  \r\nAbility: Quark Drive  \r\nTera Type: Psychic  \r\nEVs: 192 HP / 116 SpA / 200 Spe  \r\nTimid Nature  \r\nIVs: 20 Atk  \r\n- Expanding Force  \r\n- Tachyon Cutter  \r\n- Calm Mind  \r\n- Protect  \r\n\r\ninfinite source (Incineroar) @ Heavy-Duty Boots  \r\nAbility: Intimidate  \r\nTera Type: Ghost  \r\nEVs: 252 HP / 92 Def / 164 SpD  \r\nCareful Nature  \r\nIVs: 30 Spe  \r\n- Fake Out  \r\n- Flare Blitz  \r\n- Knock Off  \r\n- Parting Shot  \r\n\r\ncut hands (Iron Hands) @ Psychic Seed  \r\nAbility: Quark Drive  \r\nTera Type: Grass  \r\nEVs: 40 HP / 216 Atk / 252 SpD  \r\nAdamant Nature  \r\n- Drain Punch  \r\n- Fire Punch  \r\n- Swords Dance  \r\n- Detect  \r\n\r\nlocked club (Ogerpon-Wellspring) (F) @ Wellspring Mask  \r\nAbility: Water Absorb  \r\nTera Type: Water  \r\nEVs: 220 HP / 36 Atk / 252 Spe  \r\nJolly Nature  \r\n- Ivy Cudgel  \r\n- Taunt  \r\n- Follow Me  \r\n- Spiky Shield  \r\n\r\necdysis (Kyurem) @ Assault Vest  \r\nAbility: Pressure  \r\nShiny: Yes  \r\nTera Type: Ground  \r\nEVs: 4 HP / 252 SpA / 252 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Freeze-Dry  \r\n- Glaciate  \r\n- Earth Power  \r\n- Draco Meteor",
+	},
+	{
+		"name": "Screens Eleki Bax",
+		"source": "https://pokepast.es/ad1f0406a081f7c1",
+		"paste": "Regieleki @ Light Clay  \r\nAbility: Transistor  \r\nTera Type: Ghost  \r\nEVs: 252 HP / 108 SpA / 148 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Electroweb  \r\n- Reflect  \r\n- Light Screen  \r\n- Volt Switch  \r\n\r\nBaxcalibur @ Loaded Dice  \r\nAbility: Thermal Exchange  \r\nTera Type: Steel  \r\nEVs: 152 HP / 252 Atk / 104 Spe  \r\nAdamant Nature  \r\n- Scale Shot  \r\n- Icicle Spear  \r\n- High Horsepower  \r\n- Protect  \r\n\r\nMew @ Covert Cloak  \r\nAbility: Synchronize  \r\nTera Type: Dark  \r\nEVs: 252 HP / 4 Def / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Coaching  \r\n- Will-O-Wisp  \r\n- Tailwind  \r\n- Pollen Puff  \r\n\r\nBrute Bonnet @ Sitrus Berry  \r\nAbility: Protosynthesis  \r\nTera Type: Water  \r\nEVs: 252 HP / 80 Atk / 108 Def / 44 SpD / 24 Spe  \r\nAdamant Nature  \r\n- Spore  \r\n- Rage Powder  \r\n- Sucker Punch  \r\n- Seed Bomb  \r\n\r\nVolcanion @ Choice Specs  \r\nAbility: Water Absorb  \r\nTera Type: Fire  \r\nEVs: 248 HP / 36 Def / 208 SpA / 16 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Steam Eruption  \r\n- Heat Wave  \r\n- Earth Power  \r\n- Overheat  \r\n\r\nMetagross @ Assault Vest  \r\nAbility: Clear Body  \r\nTera Type: Dragon  \r\nEVs: 188 HP / 252 Atk / 68 Spe  \r\nAdamant Nature  \r\n- Heavy Slam  \r\n- Psychic Fangs  \r\n- Stomping Tantrum  \r\n- Bullet Punch",
+	},
+	{
+		"name": "Sand in the Wind",
+		"source": "https://pokepast.es/257b51134e964306",
+		"paste": "Hippowdon @ Smooth Rock  \r\nAbility: Sand Stream  \r\nTera Type: Grass  \r\nEVs: 144 HP / 164 Def / 200 SpD  \r\nRelaxed Nature  \r\nIVs: 0 Atk / 0 Spe  \r\n- Yawn  \r\n- Body Press  \r\n- Slack Off  \r\n- Roar  \r\n\r\nHoundstone @ Lum Berry  \r\nAbility: Sand Rush  \r\nTera Type: Dark  \r\nEVs: 252 Atk / 4 SpD / 252 Spe  \r\nAdamant Nature  \r\n- Crunch  \r\n- Protect  \r\n- Shadow Sneak  \r\n- Last Respects  \r\n\r\nZapdos-Galar @ Covert Cloak  \r\nAbility: Defiant  \r\nTera Type: Steel  \r\nEVs: 252 Atk / 4 SpD / 252 Spe  \r\nJolly Nature  \r\n- Thunderous Kick  \r\n- Tailwind  \r\n- Taunt  \r\n- Brave Bird  \r\n\r\nShiftry @ Focus Sash  \r\nAbility: Wind Rider  \r\nTera Type: Ghost  \r\nEVs: 252 Atk / 4 SpD / 252 Spe  \r\nJolly Nature  \r\n- Knock Off  \r\n- Leaf Blade  \r\n- Sucker Punch  \r\n- Fake Out  \r\n\r\nGarganacl @ Leftovers  \r\nAbility: Purifying Salt  \r\nTera Type: Ghost  \r\nEVs: 176 HP / 136 Def / 196 SpD  \r\nImpish Nature  \r\n- Salt Cure  \r\n- Wide Guard  \r\n- Protect  \r\n- Recover  \r\n\r\nIron Crown @ Assault Vest  \r\nAbility: Quark Drive  \r\nTera Type: Fairy  \r\nEVs: 76 HP / 236 SpA / 196 Spe  \r\nModest Nature  \r\n- Tachyon Cutter  \r\n- Psychic Noise  \r\n- Volt Switch  \r\n- Tera Blast",
+	},
+	{
+		"name": "Dragonite Orthworm",
+		"source": "https://pokepast.es/38bb9b7245185314",
+		"paste": "Orthworm @ Sitrus Berry  \r\nAbility: Earth Eater  \r\nTera Type: Fire  \r\nEVs: 252 HP / 4 Def / 252 SpD  \r\nRelaxed Nature  \r\nIVs: 7 Spe  \r\n- Heavy Slam  \r\n- Body Press  \r\n- Iron Defense  \r\n- Shed Tail  \r\n\r\nTing-Lu @ Leftovers  \r\nAbility: Vessel of Ruin  \r\nTera Type: Poison  \r\nEVs: 152 HP / 96 Atk / 252 SpD / 8 Spe  \r\nAdamant Nature  \r\n- Earthquake  \r\n- Throat Chop  \r\n- Stealth Rock  \r\n- Whirlwind  \r\n\r\nDragonite @ Loaded Dice  \r\nAbility: Inner Focus  \r\nTera Type: Normal  \r\nEVs: 184 HP / 164 Atk / 160 Spe  \r\nAdamant Nature  \r\n- Earthquake  \r\n- Scale Shot  \r\n- Extreme Speed  \r\n- Dragon Dance  \r\n\r\nChien-Pao @ Focus Sash  \r\nAbility: Sword of Ruin  \r\nTera Type: Ghost  \r\nEVs: 252 Atk / 4 SpD / 252 Spe  \r\nJolly Nature  \r\n- Ice Spinner  \r\n- Sucker Punch  \r\n- Brick Break  \r\n- Protect  \r\n\r\nOgerpon-Wellspring (F) @ Wellspring Mask  \r\nAbility: Water Absorb  \r\nTera Type: Water  \r\nEVs: 252 HP / 16 Atk / 28 Def / 28 SpD / 184 Spe  \r\nJolly Nature  \r\n- Ivy Cudgel  \r\n- Taunt  \r\n- Follow Me  \r\n- Spiky Shield  \r\n\r\nGouging Fire @ Booster Energy  \r\nAbility: Protosynthesis  \r\nTera Type: Fairy  \r\nEVs: 88 HP / 168 Atk / 252 Spe  \r\nJolly Nature  \r\n- Heat Crash  \r\n- Breaking Swipe  \r\n- Howl  \r\n- Burning Bulwark",
+	},
+	{
+		"name": "NFE Perish",
+		"source": "https://pokepast.es/84ad69a74d0d09c4",
+		"paste": "Porygon2 @ Eviolite  \r\nAbility: Download  \r\nTera Type: Ghost  \r\nEVs: 252 HP / 124 Def / 132 SpD  \r\nRelaxed Nature  \r\nIVs: 0 Atk  \r\n- Trick Room  \r\n- Tri Attack  \r\n- Recover  \r\n- Foul Play  \r\n\r\nWartortle @ Eviolite  \r\nAbility: Torrent  \r\nTera Type: Dragon  \r\nEVs: 252 HP / 136 Def / 120 SpD  \r\nRelaxed Nature  \r\nIVs: 0 Spe  \r\n- Fake Out  \r\n- Follow Me  \r\n- Flip Turn  \r\n- Helping Hand  \r\n\r\nVenonat @ Eviolite  \r\nAbility: Compound Eyes  \r\nTera Type: Steel  \r\nEVs: 248 HP / 104 Def / 156 SpD  \r\nCareful Nature  \r\n- Sleep Powder  \r\n- Rage Powder  \r\n- Lunge  \r\n- Protect  \r\n\r\nRhydon @ Eviolite  \r\nAbility: Lightning Rod  \r\nTera Type: Grass  \r\nEVs: 252 HP / 252 Atk / 4 SpD  \r\nAdamant Nature  \r\n- Rock Slide  \r\n- High Horsepower  \r\n- Swords Dance  \r\n- Protect  \r\n\r\nGothorita @ Eviolite  \r\nAbility: Shadow Tag  \r\nTera Type: Dark  \r\nEVs: 252 HP / 4 Atk / 212 Def / 40 SpD  \r\nSassy Nature  \r\n- Fake Out  \r\n- Psychic  \r\n- Thunder Wave  \r\n- Protect  \r\n\r\nMisdreavus @ Eviolite  \r\nAbility: Levitate  \r\nTera Type: Fairy  \r\nEVs: 252 HP / 4 Def / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Perish Song  \r\n- Ally Switch  \r\n- Taunt  \r\n- Shadow Ball",
+	},
+	{
+		"name": "Rillaboom Team",
+		"source": "https://pokepast.es/874368c090a568b0",
+		"paste": "Rillaboom @ Grassy Seed  \r\nAbility: Grassy Surge  \r\nTera Type: Water  \r\nEVs: 4 HP / 252 Atk / 252 Spe  \r\nJolly Nature  \r\n- Wood Hammer  \r\n- Grassy Glide  \r\n- Fake Out  \r\n- Protect  \r\n\r\nNoivern @ Life Orb  \r\nAbility: Telepathy  \r\nTera Type: Fairy  \r\nEVs: 252 SpA / 4 SpD / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Dragon Pulse  \r\n- Air Slash  \r\n- Tailwind  \r\n- Protect  \r\n\r\nIron Treads @ Booster Energy  \r\nAbility: Quark Drive  \r\nEVs: 60 HP / 252 Atk / 196 Spe  \r\nSerious Nature  \r\n- Steel Roller  \r\n- Iron Head  \r\n- High Horsepower  \r\n- Protect  \r\n\r\nCharizard @ Life Orb  \r\nAbility: Solar Power  \r\nEVs: 252 SpA / 4 SpD / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Heat Wave  \r\n- Air Slash  \r\n- Fire Blast  \r\n- Protect  \r\n\r\nPrimarina @ Throat Spray  \r\nAbility: Liquid Voice  \r\nEVs: 252 HP / 252 SpA / 4 SpD  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Hyper Voice  \r\n- Moonblast  \r\n- Calm Mind  \r\n- Protect  \r\n\r\nAlakazam-Mega @ Alakazite  \r\nAbility: Trace  \r\nEVs: 4 HP / 252 SpA / 252 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Dazzling Gleam  \r\n- Psychic  \r\n- Shadow Ball  \r\n- Protect",
+	},
+	{
+		"name": "Magearna Sweep",
+		"source": "https://pokepast.es/42b6f8047b3599ca",
+		"paste": "Magearna @ Magearnite  \r\nAbility: Soul-Heart  \r\nEVs: 120 HP / 252 SpA / 136 Spe  \r\nModest Nature  \r\nIVs: 0 Atk  \r\n- Dazzling Gleam  \r\n- Stored Power  \r\n- Shift Gear  \r\n- Protect  \r\n\r\nStaraptor @ Choice Scarf  \r\nAbility: Intimidate  \r\nTera Type: Flying  \r\nEVs: 252 HP / 4 SpD / 252 Spe  \r\nJolly Nature  \r\n- Final Gambit  \r\n- Brave Bird  \r\n- U-turn  \r\n- Quick Attack  \r\n\r\nWhimsicott @ Focus Sash  \r\nAbility: Prankster  \r\nTera Type: Ghost  \r\nEVs: 252 SpA / 252 Spe  \r\nTimid Nature  \r\nIVs: 0 Atk  \r\n- Tailwind  \r\n- Memento  \r\n- Encore  \r\n- Moonblast  \r\n\r\nRiolu @ Eviolite  \r\nAbility: Prankster  \r\nTera Type: Steel  \r\nEVs: 252 HP / 4 Atk / 252 SpD  \r\nSassy Nature  \r\n- Coaching  \r\n- Follow Me  \r\n- Quick Guard  \r\n- Feint  \r\n\r\nTyranitar @ Choice Band  \r\nAbility: Sand Stream  \r\nTera Type: Flying  \r\nEVs: 252 HP / 252 Atk / 4 SpD  \r\nAdamant Nature  \r\n- Knock Off  \r\n- Rock Slide  \r\n- Brick Break  \r\n- High Horsepower  \r\n\r\nSinistcha @ Sitrus Berry  \r\nAbility: Hospitality  \r\nEVs: 252 HP / 56 Def / 200 SpD  \r\nRelaxed Nature  \r\nIVs: 0 Atk  \r\n- Rage Powder  \r\n- Matcha Gotcha  \r\n- Trick Room  \r\n- Protect",
 	},
 ];
