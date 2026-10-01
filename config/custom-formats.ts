@@ -26,7 +26,7 @@ export const Formats = [
 	},
 
 	{
-		name: "NatdexAG Triple",
+		name: "[Gen 9] NatdexAG Triple",
 		desc: "Experimental Triples Multi Battle for two teams of three trainers.",
 		mod: 'gen9',
 		gameType: 'multi',

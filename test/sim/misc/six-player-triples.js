@@ -13,7 +13,7 @@ describe('Six-player Triples Multi Battle', () => {
 	}
 
 	it('should arrange and resolve choices from two teams of three trainers', () => {
-		battle = common.createBattle({ formatid: 'natdexagtriple' }, [
+		battle = common.createBattle({ formatid: 'gen9natdexagtriple' }, [
 			team('Mew'), team('Mewtwo'), team('Celebi'),
 			team('Jirachi'), team('Victini'), team('Deoxys'),
 		]);
@@ -44,7 +44,7 @@ describe('Six-player Triples Multi Battle', () => {
 	});
 
 	it(`should move a team's last trainer to the center position`, () => {
-		battle = common.createBattle({ formatid: 'natdexagtriple' }, [
+		battle = common.createBattle({ formatid: 'gen9natdexagtriple' }, [
 			team('Mew'), team('Mewtwo'), team('Celebi'),
 			team('Jirachi'), team('Victini'), team('Deoxys'),
 		]);
@@ -64,7 +64,7 @@ describe('Six-player Triples Multi Battle', () => {
 	});
 
 	it('should preserve six-player state through serialization', () => {
-		battle = common.createBattle({ formatid: 'natdexagtriple' }, [
+		battle = common.createBattle({ formatid: 'gen9natdexagtriple' }, [
 			team('Mew'), team('Mewtwo'), team('Celebi'),
 			team('Jirachi'), team('Victini'), team('Deoxys'),
 		]);
