@@ -21,8 +21,8 @@ import type { RoomSettings } from './rooms';
 import type { BestOfGame } from './room-battle-bestof';
 import type { GameTimerSettings } from '../sim/dex-formats';
 
-type ChannelIndex = 0 | 1 | 2 | 3 | 4;
-export type PlayerIndex = 1 | 2 | 3 | 4;
+type ChannelIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+export type PlayerIndex = 1 | 2 | 3 | 4 | 5 | 6;
 export type ChallengeType = 'rated' | 'unrated' | 'challenge' | 'tour';
 
 interface BattleRequestTracker {
@@ -149,7 +149,7 @@ export class RoomBattlePlayer extends RoomGamePlayer<RoomBattle> {
 	invite: ID;
 	/**
 	 * Has the simulator received this player's team yet?
-	 * Basically always yes except when creating a 4-player battle,
+	 * Basically always yes except when creating a multiplayer battle,
 	 * in which case players will need to bring their own team.
 	 */
 	hasTeam: boolean;
@@ -158,7 +158,7 @@ export class RoomBattlePlayer extends RoomGamePlayer<RoomBattle> {
 		if (typeof user === 'string') user = null;
 
 		this.slot = `p${num}` as SideID;
-		this.channelIndex = (game.gameType === 'multi' && num > 2 ? num - 2 : num) as ChannelIndex;
+		this.channelIndex = (game.gameType === 'multi' && num > 2 ? (num % 2 ? 1 : 2) : num) as ChannelIndex;
 
 		this.request = { rqid: 0, request: '', isWait: 'cantUndo', choice: '' };
 		this.wantsTie = false;
@@ -567,6 +567,8 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 	p2: RoomBattlePlayer = null!;
 	p3: RoomBattlePlayer = null!;
 	p4: RoomBattlePlayer = null!;
+	p5: RoomBattlePlayer = null!;
+	p6: RoomBattlePlayer = null!;
 	inviteOnlySetter: ID | null = null;
 	logData: AnyObject | null = null;
 	endType: 'forfeit' | 'forced' | 'normal' = 'normal';
@@ -1261,7 +1263,7 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 			this.started = true;
 			void this.writePrivateTeamPastes();
 		} else if (delayStart === 'multi') {
-			this.room.add(`|uhtml|invites|<div class="broadcast broadcast-blue"><strong>This is a 4-player challenge battle</strong><br />The players will need to add more players before the battle can start.</div>`);
+			this.room.add(`|uhtml|invites|<div class="broadcast broadcast-blue"><strong>This is a ${this.playerCap}-player challenge battle</strong><br />The players will need to add more players before the battle can start.</div>`);
 		}
 	}
 
@@ -1312,8 +1314,13 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 			)
 		));
 		if (this.gameType === 'multi') {
-			[playerForms[1], playerForms[2]] = [playerForms[2], playerForms[1]];
-			playerForms.splice(2, 0, '&mdash; vs &mdash;');
+			if (this.playerCap === 6) {
+				const [p1, p2, p3, p4, p5, p6] = playerForms;
+				playerForms.splice(0, playerForms.length, p1, p3, p5, '&mdash; vs &mdash;', p2, p4, p6);
+			} else {
+				[playerForms[1], playerForms[2]] = [playerForms[2], playerForms[1]];
+				playerForms.splice(2, 0, '&mdash; vs &mdash;');
+			}
 		}
 		connection.sendTo(
 			this.room,
@@ -1335,6 +1342,8 @@ export class RoomBattle extends RoomGame<RoomBattlePlayer> {
 		this.p2 = null!;
 		this.p3 = null!;
 		this.p4 = null!;
+		this.p5 = null!;
+		this.p6 = null!;
 
 		void this.stream.destroy();
 		if (this.active) {

@@ -123,7 +123,7 @@ export interface DynamaxOptions {
 }
 export interface SideRequestData {
 	name: string;
-	/** Side ID (`p1`, `p2`, `p3`, or `p4`), not the ID of the side's name. */
+	/** Side ID (`p1` through `p6`), not the ID of the side's name. */
 	id: SideID;
 	pokemon: PokemonSwitchRequestData[];
 	noCancel?: boolean;
@@ -168,12 +168,16 @@ export class Side {
 	readonly id: SideID;
 	/** Index in `battle.sides`: `battle.sides[side.n] === side` */
 	readonly n: number;
+	/** Left/center/right field position for six-player Multi Battles. */
+	multiPosition: number;
 
 	name: string;
 	avatar: string;
 	foe: Side = null!; // set in battle.start()
 	/** Only exists in multi battle, for the allied side */
 	allySide: Side | null = null; // set in battle.start()
+	/** All allied trainer sides; contains one entry in regular Multi Battles. */
+	allySides: Side[] = []; // set in battle.start()
 	team: PokemonSet[];
 	pokemon: Pokemon[];
 	active: Pokemon[];
@@ -232,8 +236,9 @@ export class Side {
 
 		this.battle = battle;
 		if (this.battle.format.side) Object.assign(this, this.battle.format.side);
-		this.id = ['p1', 'p2', 'p3', 'p4'][sideNum] as SideID;
+		this.id = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'][sideNum] as SideID;
 		this.n = sideNum;
+		this.multiPosition = Math.floor(sideNum / 2);
 
 		this.name = name;
 		this.avatar = '';
@@ -312,7 +317,11 @@ export class Side {
 		if (this.battle.gen !== 8) return false;
 		// In multi battles, players on a team are alternatingly given the option to dynamax each turn
 		// On turn 1, the players on their team's respective left have the first chance (p1 and p2)
-		if (this.battle.gameType === 'multi' && this.battle.turn % 2 !== [1, 1, 0, 0][this.n]) return false;
+		if (this.battle.gameType === 'multi') {
+			const turnsPerTeam = this.battle.activePerHalf;
+			const dynamaxTurn = (this.battle.turn - 1) % turnsPerTeam;
+			if (Math.floor(this.n / 2) !== dynamaxTurn) return false;
+		}
 		// if (this.battle.gameType === 'multitriples' && this.battle.turn % 3 !== [1, 1, 2, 2, 0, 0][this.side.n]) {
 		//		return false;
 		// }
@@ -383,7 +392,10 @@ export class Side {
 			return this.battle.sides.filter(side => side !== this).map(side => side.pokemonLeft).reduce((a, b) => a + b);
 		}
 
-		if (this.foe.allySide) return this.foe.pokemonLeft + this.foe.allySide.pokemonLeft;
+		if (this.battle.gameType === 'multi') {
+			return this.battle.sides.filter(side => side.n % 2 !== this.n % 2)
+				.reduce((total, side) => total + side.pokemonLeft, 0);
+		}
 
 		return this.foe.pokemonLeft;
 	}
@@ -404,10 +416,10 @@ export class Side {
 	activeTeam() {
 		if (this.battle.gameType !== 'multi') return this.active;
 
-		return this.battle.sides[this.n % 2].active.concat(this.battle.sides[this.n % 2 + 2].active);
+		return this.battle.sides.filter(side => side.n % 2 === this.n % 2).flatMap(side => side.active);
 	}
 	hasAlly(pokemon: Pokemon) {
-		return pokemon.side === this || pokemon.side === this.allySide;
+		return pokemon.side === this || this.allySides.includes(pokemon.side);
 	}
 
 	addSideCondition(

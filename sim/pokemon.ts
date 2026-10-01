@@ -735,12 +735,18 @@ export class Pokemon {
 	}
 
 	isAlly(pokemon: Pokemon | null) {
-		return !!pokemon && (this.side === pokemon.side || this.side.allySide === pokemon.side);
+		return !!pokemon && this.side.hasAlly(pokemon);
 	}
 
 	isAdjacent(pokemon2: Pokemon) {
 		if (this.fainted || pokemon2.fainted) return false;
 		if (this.battle.activePerHalf <= 2) return this !== pokemon2;
+		if (this.battle.gameType === 'multi') {
+			const position = Math.abs(this.getLocOf(this));
+			const position2 = Math.abs(this.getLocOf(pokemon2));
+			if (this.isAlly(pokemon2)) return Math.abs(position - position2) === 1;
+			return Math.abs(position + position2 - (this.battle.activePerHalf + 1)) <= 1;
+		}
 		if (this.side === pokemon2.side) return Math.abs(this.position - pokemon2.position) === 1;
 		return Math.abs(this.position + pokemon2.position + 1 - this.side.active.length) <= 1;
 	}
@@ -768,6 +774,13 @@ export class Pokemon {
 	}
 
 	getAtLoc(targetLoc: number) {
+		if (this.battle.gameType === 'multi') {
+			const teamParity = targetLoc < 0 ? this.side.n % 2 : (this.side.n + 1) % 2;
+			const side = this.battle.sides.find(candidate => (
+				candidate.n % 2 === teamParity && candidate.multiPosition === Math.abs(targetLoc) - 1
+			));
+			return side?.active[0];
+		}
 		let side = this.battle.sides[targetLoc < 0 ? this.side.n % 2 : (this.side.n + 1) % 2];
 		targetLoc = Math.abs(targetLoc);
 		if (targetLoc > side.active.length) {
@@ -782,6 +795,10 @@ export class Pokemon {
 	 * Use `getAtLoc` to reverse.
 	 */
 	getLocOf(target: Pokemon) {
+		if (this.battle.gameType === 'multi') {
+			const sameHalf = (this.side.n % 2) === (target.side.n % 2);
+			return (sameHalf ? -1 : 1) * (target.side.multiPosition + 1);
+		}
 		const positionOffset = Math.floor(target.side.n / 2) * target.side.active.length;
 		const position = target.position + positionOffset + 1;
 		const sameHalf = (this.side.n % 2) === (target.side.n % 2);

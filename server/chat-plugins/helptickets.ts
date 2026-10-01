@@ -19,6 +19,8 @@ const REPORT_NAMECOLORS: { [k: string]: string } = {
 	p2: 'Crimson',
 	p3: '#FBa92C',
 	p4: '#228B22',
+	p5: '#8A2BE2',
+	p6: '#008B8B',
 	other: '#00000',
 };
 
@@ -92,7 +94,7 @@ interface BattleInfo {
 	log: string[];
 	url: string;
 	title: string;
-	players: { p1: ID, p2: ID, p3?: ID, p4?: ID };
+	players: { p1: ID, p2: ID, p3?: ID, p4?: ID, p5?: ID, p6?: ID };
 	pokemon: Record<string, { species: string, name?: string }[]>;
 }
 

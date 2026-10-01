@@ -1917,6 +1917,8 @@ export class GameRoom extends BasicRoom {
 	p2: User | null;
 	p3: User | null;
 	p4: User | null;
+	p5: User | null;
+	p6: User | null;
 	/**
 	 * The lower player's rating, for searching purposes.
 	 * 0 for unrated battles. 1 for unknown ratings.
@@ -1946,6 +1948,8 @@ export class GameRoom extends BasicRoom {
 		this.p2 = options.players?.[1]?.user || null;
 		this.p3 = options.players?.[2]?.user || null;
 		this.p4 = options.players?.[3]?.user || null;
+		this.p5 = options.players?.[4]?.user || null;
+		this.p6 = options.players?.[5]?.user || null;
 
 		this.rated = options.rated === true ? 1 : options.rated || 0;
 
@@ -1959,10 +1963,10 @@ export class GameRoom extends BasicRoom {
 	}
 	/**
 	 * - logNum = 0          : spectator log (no exact HP)
-	 * - logNum = 1, 2, 3, 4 : player log (exact HP for that player)
+	 * - logNum = 1 through 6 : player log (exact HP for that player)
 	 * - logNum = -1         : debug log (exact HP for all players)
 	 */
-	getLog(channel: -1 | 0 | 1 | 2 | 3 | 4 = 0) {
+	getLog(channel: -1 | 0 | 1 | 2 | 3 | 4 | 5 | 6 = 0) {
 		return this.log.getScrollback(channel);
 	}
 	getLogForUser(user: User) {

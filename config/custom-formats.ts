@@ -26,6 +26,16 @@ export const Formats = [
 	},
 
 	{
+		name: "NatdexAG Triple",
+		desc: "Experimental Triples Multi Battle for two teams of three trainers.",
+		mod: 'gen9',
+		gameType: 'multi',
+		playerCount: 6,
+		searchShow: false,
+		ruleset: ['Standard AG', 'NatDex Mod', 'Tera Type Preview'],
+	},
+
+	{
 		name: "[Gen 9] NatDex October TPL Draft League",
 		mod: 'gen9',
 		gameType: 'doubles',

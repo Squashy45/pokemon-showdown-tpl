@@ -28,11 +28,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 declare const __version: any;
 
-export type ChannelID = 0 | 1 | 2 | 3 | 4;
+export type ChannelID = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 export type ChannelMessages<T extends ChannelID | -1> = Record<T, string[]>;
 
-const splitRegex = /^\|split\|p([1234])\n(.*)\n(.*)|.+/gm;
+const splitRegex = /^\|split\|p([123456])\n(.*)\n(.*)|.+/gm;
 const ROOT_PATH = path.resolve(__dirname, __dirname.includes(`${path.sep}dist${path.sep}`) ? '../..' : '..');
 const PRIVATE_INPUT_LOG_PATH = path.join(ROOT_PATH, 'logs', 'private-inputs.jsonl');
 
@@ -85,6 +85,8 @@ export function extractChannelMessages<T extends ChannelID | -1>(message: string
 		2: [],
 		3: [],
 		4: [],
+		5: [],
+		6: [],
 	};
 
 	for (const [lineMatch, playerMatch, secretMessage, sharedMessage] of message.matchAll(splitRegex)) {
@@ -114,6 +116,8 @@ interface BattleOptions {
 	p2?: PlayerOptions; // Player 2 data
 	p3?: PlayerOptions; // Player 3 data
 	p4?: PlayerOptions; // Player 4 data
+	p5?: PlayerOptions; // Player 5 data
+	p6?: PlayerOptions; // Player 6 data
 	debug?: boolean; // show debug mode option
 	forceRandomChance?: boolean; // force Battle#randomChance to always return true or false (used in some tests)
 	deserialized?: boolean;
@@ -165,7 +169,7 @@ export class Battle {
 	 */
 	readonly activePerHalf: 1 | 2 | 3;
 	readonly field: Field;
-	readonly sides: [Side, Side] | [Side, Side, Side, Side];
+	readonly sides: [Side, Side] | [Side, Side, Side, Side] | [Side, Side, Side, Side, Side, Side];
 	readonly prngSeed: PRNGSeed;
 	dex: ModdedDex;
 	gen: number;
@@ -262,7 +266,7 @@ export class Battle {
 		this.gameType = (format.gameType || 'singles');
 		this.field = new Field(this);
 		this.sides = Array(format.playerCount).fill(null) as any;
-		this.activePerHalf = this.gameType === 'triples' ? 3 :
+		this.activePerHalf = this.gameType === 'triples' || format.playerCount === 6 ? 3 :
 			(format.playerCount > 2 || this.gameType === 'doubles') ? 2 :
 			1;
 		this.prng = options.prng || new PRNG(options.seed || undefined);
@@ -351,7 +355,7 @@ export class Battle {
 			}
 		}
 
-		const sides: SideID[] = ['p1', 'p2', 'p3', 'p4'];
+		const sides: SideID[] = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'];
 		for (const side of sides) {
 			if (options[side]) {
 				this.setPlayer(side, options[side]);
@@ -381,6 +385,14 @@ export class Battle {
 
 	get p4() {
 		return this.sides[3];
+	}
+
+	get p5() {
+		return this.sides[4];
+	}
+
+	get p6() {
+		return this.sides[5];
 	}
 
 	toString() {
@@ -1115,7 +1127,7 @@ export class Battle {
 			for (const side of this.sides) {
 				if (shouldBubbleDown) {
 					for (const active of side.active) {
-						if (side === target || side === target.allySide) {
+						if (side === target || target.allySides.includes(side)) {
 							handlers = handlers.concat(this.findPokemonEventHandlers(active, `on${eventName}`));
 						} else if (prefixedHandlers) {
 							handlers = handlers.concat(this.findPokemonEventHandlers(active, `onFoe${eventName}`));
@@ -1124,7 +1136,7 @@ export class Battle {
 					}
 				}
 				if (side.n < 2 || !side.allySide) {
-					if (side === target || side === target.allySide) {
+					if (side === target || target.allySides.includes(side)) {
 						handlers.push(...this.findSideEventHandlers(side, `on${eventName}`));
 					} else if (prefixedHandlers) {
 						handlers.push(...this.findSideEventHandlers(side, `onFoe${eventName}`));
@@ -1571,8 +1583,8 @@ export class Battle {
 		this.winner = side ? side.name : '';
 
 		this.add('');
-		if (side?.allySide) {
-			this.add('win', side.name + ' & ' + side.allySide.name);
+		if (side?.allySides.length) {
+			this.add('win', [side, ...side.allySides].map(ally => ally.name).join(' & '));
 		} else if (side) {
 			this.add('win', side.name);
 		} else {
@@ -1957,17 +1969,32 @@ export class Battle {
 		const format = this.format;
 		this.started = true;
 		if (this.gameType === 'multi') {
-			this.sides[1].foe = this.sides[2]!;
-			this.sides[0].foe = this.sides[3]!;
-			this.sides[2]!.foe = this.sides[1];
-			this.sides[3]!.foe = this.sides[0];
-			this.sides[1].allySide = this.sides[3]!;
-			this.sides[0].allySide = this.sides[2]!;
-			this.sides[2]!.allySide = this.sides[0];
-			this.sides[3]!.allySide = this.sides[1];
-			// sync side conditions
-			this.sides[2]!.sideConditions = this.sides[0].sideConditions;
-			this.sides[3]!.sideConditions = this.sides[1].sideConditions;
+			if (this.sides.length === 6) {
+				for (const side of this.sides) {
+					const allies = this.sides.filter(other => other !== side && other.n % 2 === side.n % 2);
+					const foes = this.sides.filter(other => other.n % 2 !== side.n % 2);
+					side.allySides = allies;
+					side.allySide = allies[0];
+					side.foe = foes[this.activePerHalf - 1 - Math.floor(side.n / 2)];
+					if (side.n >= 2) side.sideConditions = this.sides[side.n % 2].sideConditions;
+				}
+			} else {
+				this.sides[1].foe = this.sides[2]!;
+				this.sides[0].foe = this.sides[3]!;
+				this.sides[2]!.foe = this.sides[1];
+				this.sides[3]!.foe = this.sides[0];
+				this.sides[1].allySide = this.sides[3]!;
+				this.sides[0].allySide = this.sides[2]!;
+				this.sides[2]!.allySide = this.sides[0];
+				this.sides[3]!.allySide = this.sides[1];
+				this.sides[1].allySides = [this.sides[3]!];
+				this.sides[0].allySides = [this.sides[2]!];
+				this.sides[2]!.allySides = [this.sides[0]];
+				this.sides[3]!.allySides = [this.sides[1]];
+				// sync side conditions
+				this.sides[2]!.sideConditions = this.sides[0].sideConditions;
+				this.sides[3]!.sideConditions = this.sides[1].sideConditions;
+			}
 		} else {
 			this.sides[1].foe = this.sides[0];
 			this.sides[0].foe = this.sides[1];
@@ -2576,6 +2603,16 @@ export class Battle {
 		}
 	}
 
+	recenterSixPlayerMulti() {
+		if (this.gameType !== 'multi' || this.sides.length !== 6) return;
+		for (const teamParity of [0, 1]) {
+			const teamSides = this.sides.filter(side => side.n % 2 === teamParity);
+			for (const side of teamSides) side.multiPosition = Math.floor(side.n / 2);
+			const survivingSides = teamSides.filter(side => side.pokemonLeft);
+			if (survivingSides.length === 1) survivingSides[0].multiPosition = 1;
+		}
+	}
+
 	faintMessages(lastFirst = false, forceCheck = false, checkWin = true) {
 		if (this.ended) return;
 		const length = this.faintQueue.length;
@@ -2621,6 +2658,7 @@ export class Battle {
 				if (this.faintQueue.length >= faintQueueLeft) checkWin = true;
 			}
 		}
+		this.recenterSixPlayerMulti();
 
 		if (this.gen <= 1) {
 			// in gen 1, fainting skips the rest of the turn
@@ -2654,7 +2692,10 @@ export class Battle {
 		}
 		for (const side of this.sides) {
 			if (!side.foePokemonLeft()) {
-				this.win(side);
+				const winner = this.gameType === 'multi' ?
+					this.sides.find(candidate => candidate.n % 2 === side.n % 2 && candidate.pokemonLeft) || side :
+					side;
+				this.win(winner);
 				return true;
 			}
 		}
@@ -2766,7 +2807,7 @@ export class Battle {
 		case 'runDynamax':
 			action.pokemon.addVolatile('dynamax');
 			action.pokemon.side.dynamaxUsed = true;
-			if (action.pokemon.side.allySide) action.pokemon.side.allySide.dynamaxUsed = true;
+			for (const allySide of action.pokemon.side.allySides) allySide.dynamaxUsed = true;
 			break;
 		case 'terastallize':
 			this.actions.terastallize(action.pokemon);
@@ -3327,10 +3368,14 @@ export class Battle {
 				p2: this.sides[1].name,
 				p3: this.sides[2]?.name,
 				p4: this.sides[3]?.name,
+				p5: this.sides[4]?.name,
+				p6: this.sides[5]?.name,
 				p1team: this.sides[0].team,
 				p2team: this.sides[1].team,
 				p3team: this.sides[2]?.team,
 				p4team: this.sides[3]?.team,
+				p5team: this.sides[4]?.team,
+				p6team: this.sides[5]?.team,
 				score: [this.sides[0].pokemonLeft, this.sides[1].pokemonLeft],
 				inputLog: this.inputLog,
 			};
@@ -3345,6 +3390,18 @@ export class Battle {
 			} else {
 				delete log.p4;
 				delete log.p4team;
+			}
+			if (this.sides[4]) {
+				log.score.push(this.sides[4].pokemonLeft);
+			} else {
+				delete log.p5;
+				delete log.p5team;
+			}
+			if (this.sides[5]) {
+				log.score.push(this.sides[5].pokemonLeft);
+			} else {
+				delete log.p6;
+				delete log.p6team;
 			}
 			this.send('end', JSON.stringify(log));
 			this.sentEnd = true;

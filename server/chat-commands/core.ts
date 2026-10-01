@@ -1179,11 +1179,12 @@ export const commands: Chat.ChatCommands = {
 
 		this.checkCan('joinbattle', null, room);
 
-		const { targetUser, targetUsername: name, rest: slot } = this.splitUser(target, { exactName: true });
-		if (slot !== 'p1' && slot !== 'p2' && slot !== 'p3' && slot !== 'p4') {
-			this.errorReply(this.TL`Player must be set to "p1" or "p2", not "${slot}".`);
+		const { targetUser, targetUsername: name, rest: requestedSlot } = this.splitUser(target, { exactName: true });
+		if (!['p1', 'p2', 'p3', 'p4', 'p5', 'p6'].includes(requestedSlot)) {
+			this.errorReply(this.TL`Player must be set to a supported player slot, not "${requestedSlot}".`);
 			return this.parse('/help addplayer');
 		}
+		const slot = requestedSlot as SideID;
 
 		const battle = room.battle;
 		const player = battle[slot];
@@ -1240,7 +1241,7 @@ export const commands: Chat.ChatCommands = {
 		if (!battle.started) battle.sendInviteForm(connection);
 	},
 	invitebattlehelp: [
-		`/addplayer [username], [p1|p2|p3|p4] - Invites the player to join your current battle.`,
+		`/addplayer [username], [p1|p2|p3|p4|p5|p6] - Invites the player to join your current battle.`,
 	],
 
 	async acceptbattle(target, room, user, connection) {

@@ -72,7 +72,7 @@ export class GameChallenge extends AbstractChallenge {
 	declare acceptCommand: string;
 }
 /**
- * Invites for `/importinputlog` (`ready: null`) or 4-player battles
+ * Invites for `/importinputlog` (`ready: null`) or multiplayer battles
  * (`ready: BattleReady`)
  */
 export class BattleInvite extends AbstractChallenge {

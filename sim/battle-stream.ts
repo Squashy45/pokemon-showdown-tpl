@@ -91,6 +91,8 @@ export class BattleStream extends Streams.ObjectReadWriteStream<string> {
 		case 'p2':
 		case 'p3':
 		case 'p4':
+		case 'p5':
+		case 'p6':
 			if (message === 'undo') {
 				this.battle!.undoChoice(type);
 			} else {
@@ -390,7 +392,7 @@ export class BattleStream extends Streams.ObjectReadWriteStream<string> {
 }
 
 /**
- * Splits a BattleStream into omniscient, spectator, p1, p2, p3 and p4
+ * Splits a BattleStream into omniscient, spectator, and p1 through p6
  * streams, for ease of consumption.
  */
 export function getPlayerStreams(stream: BattleStream) {
@@ -426,19 +428,31 @@ export function getPlayerStreams(stream: BattleStream) {
 				void stream.write(data.replace(/(^|\n)/g, `$1>p4 `));
 			},
 		}),
+		p5: new Streams.ObjectReadWriteStream({
+			write(data: string) {
+				void stream.write(data.replace(/(^|\n)/g, `$1>p5 `));
+			},
+		}),
+		p6: new Streams.ObjectReadWriteStream({
+			write(data: string) {
+				void stream.write(data.replace(/(^|\n)/g, `$1>p6 `));
+			},
+		}),
 	};
 	(async () => {
 		for await (const chunk of stream) {
 			const [type, data] = Utils.splitFirst(chunk, `\n`);
 			switch (type) {
 			case 'update':
-				const channelMessages = extractChannelMessages(data, [-1, 0, 1, 2, 3, 4]);
+				const channelMessages = extractChannelMessages(data, [-1, 0, 1, 2, 3, 4, 5, 6]);
 				streams.omniscient.push(channelMessages[-1].join('\n'));
 				streams.spectator.push(channelMessages[0].join('\n'));
 				streams.p1.push(channelMessages[1].join('\n'));
 				streams.p2.push(channelMessages[2].join('\n'));
 				streams.p3.push(channelMessages[3].join('\n'));
 				streams.p4.push(channelMessages[4].join('\n'));
+				streams.p5.push(channelMessages[5].join('\n'));
+				streams.p6.push(channelMessages[6].join('\n'));
 				break;
 			case 'sideupdate':
 				const [side, sideData] = Utils.splitFirst(data, `\n`);
