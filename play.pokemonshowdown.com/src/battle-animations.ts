@@ -717,7 +717,9 @@ export class BattleScene implements BattleSceneStub {
 				const details = this.getDetailsText(poke);
 				pokemonhtml += `<span${tooltipCode} style="${Dex.getPokemonIcon(poke, !side.isFar)}" aria-label="${details}"></span>`;
 			}
-			if (i % 3 === 2) pokemonhtml += `</div><div class="teamicons">`;
+			if (i % 3 === 2 && i < sidebarIcons.length - 1) {
+				pokemonhtml += `</div><div class="teamicons">`;
+			}
 		}
 		pokemonhtml = '<div class="teamicons">' + pokemonhtml + '</div>';
 		const ratinghtml = side.rating ? ` title="Rating: ${BattleLog.escapeHTML(side.rating)}"` : ``;

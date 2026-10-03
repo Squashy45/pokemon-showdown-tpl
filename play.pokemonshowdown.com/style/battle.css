@@ -348,18 +348,18 @@ License: GPLv2
 }
 .battle.multi6 .trainer-near3-1,
 .battle.multi6 .trainer-far3-1 {
-	top: 121px;
+	top: 119px;
 	bottom: auto;
 }
 .battle.multi6 .trainer-near3-2,
 .battle.multi6 .trainer-far3-2 {
-	top: 238px;
+	top: 234px;
 	bottom: auto;
 }
 .battle.multi6 .trainer div.trainersprite {
-	height: 54px;
+	height: 35px;
 	background-position: center top;
-	background-size: auto 54px;
+	background-size: auto 35px;
 }
 .battle.multi6 .trainer div.teamicons {
 	height: 30px;
