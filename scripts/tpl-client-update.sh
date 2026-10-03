@@ -17,7 +17,7 @@ if [[ ! -d node_modules ]]; then
 fi
 cp config/config-example.js config/config.js
 cat config/tpl-config.js >> config/config.js
-node build
+node build full
 
 pm2 delete tpl-client >/dev/null 2>&1 || true
 pm2 start tpl-static-server.mjs --name tpl-client -- 8081
