@@ -257,6 +257,9 @@ export class BattleScene implements BattleSceneStub {
 	setMute(muted: boolean) {
 		BattleSound.setMute(muted);
 	}
+	setBattleLayout(gameType: string) {
+		this.$frame.toggleClass('multi6', gameType === 'multi6');
+	}
 	wait(time: number) {
 		if (!this.animating) return;
 		this.timeOffset += time;
@@ -361,7 +364,7 @@ export class BattleScene implements BattleSceneStub {
 		if (!loc.xscale && loc.xscale !== 0) loc.xscale = loc.scale;
 		if (!loc.yscale && loc.yscale !== 0) loc.yscale = loc.scale;
 
-		let left = 210;
+		let left = 210 + (this.battle.gameType === 'multi6' ? 90 : 0);
 		let top = 245;
 		let scale = (obj.gen === 5 ?
 			2.0 - ((loc.z!) / 200) :
@@ -760,7 +763,7 @@ export class BattleScene implements BattleSceneStub {
 		);
 	}
 	updateSidebar(side: Side) {
-		if (this.battle.gameType === 'freeforall') {
+		if (this.battle.gameType === 'multi6' || this.battle.gameType === 'freeforall') {
 			this.updateLeftSidebar();
 			this.updateRightSidebar();
 		} else if (side === this.battle.nearSide || side === this.battle.nearSide.ally) {
@@ -771,6 +774,13 @@ export class BattleScene implements BattleSceneStub {
 	}
 	updateLeftSidebar() {
 		const side = this.battle.nearSide;
+		if (this.battle.gameType === 'multi6') {
+			const team = this.battle.sides.filter(candidate => candidate.n % 2 === side.n % 2);
+			this.$leftbar.html(team.map((candidate, index) =>
+				this.getSidebarHTML(candidate, `near3-${index}`)
+			).join(''));
+			return;
+		}
 
 		if (side.ally) {
 			const side2 = side.ally;
@@ -784,6 +794,13 @@ export class BattleScene implements BattleSceneStub {
 	}
 	updateRightSidebar() {
 		const side = this.battle.farSide;
+		if (this.battle.gameType === 'multi6') {
+			const team = this.battle.sides.filter(candidate => candidate.n % 2 === side.n % 2);
+			this.$rightbar.html(team.map((candidate, index) =>
+				this.getSidebarHTML(candidate, `far3-${index}`)
+			).join(''));
+			return;
+		}
 
 		if (side.ally) {
 			const side2 = side.ally;
@@ -828,9 +845,7 @@ export class BattleScene implements BattleSceneStub {
 
 			side.missedPokemon.sprite.isMissedPokemon = true;
 		}
-		if (this.battle.sides.length > 2 && this.sideConditions.length === 2) {
-			this.sideConditions.push({}, {});
-		}
+		while (this.sideConditions.length < this.battle.sides.length) this.sideConditions.push({});
 		this.rebuildTooltips();
 	}
 	rebuildTooltips() {
@@ -852,8 +867,9 @@ export class BattleScene implements BattleSceneStub {
 		};
 		for (const id in tooltips) {
 			let layout = tooltips[id as 'p1a'];
+			const left = layout.left + (this.battle.gameType === 'multi6' ? 90 : 0);
 			tooltipBuf += `<div class="has-tooltip" style="position:absolute;`;
-			tooltipBuf += `top:${layout.top}px;left:${layout.left}px;width:${layout.width}px;height:${layout.height}px;`;
+			tooltipBuf += `top:${layout.top}px;left:${left}px;width:${layout.width}px;height:${layout.height}px;`;
 			tooltipBuf += `" data-id="${id}" data-tooltip="${layout.tooltip}" data-ownheight="1"></div>`;
 		}
 		this.$tooltips.html(tooltipBuf);
@@ -861,7 +877,9 @@ export class BattleScene implements BattleSceneStub {
 
 	teamPreview() {
 		let newBGNum = 0;
-		for (let siden = 0; siden < 2 || (this.battle.gameType === 'multi' && siden < 4); siden++) {
+		for (let siden = 0; siden < 2 || (
+			['multi', 'multi6'].includes(this.battle.gameType) && siden < this.battle.sides.length
+		); siden++) {
 			let side = this.battle.sides[siden];
 			const spriteIndex = +this.battle.viewpointSwitched ^ (siden % 2);
 			let textBuf = '';
@@ -2247,7 +2265,8 @@ export class PokemonSprite extends Sprite {
 				}
 				break;
 			case 2:
-				this.x = (slot * -70 + 20) * (this.isFrontSprite ? 1 : -1);
+				this.x = (slot * (this.scene.battle.gameType === 'multi6' ? -100 : -70) + 20) *
+					(this.isFrontSprite ? 1 : -1);
 				break;
 			}
 			this.y = this.isFrontSprite ? slot * 7 : slot * -10;

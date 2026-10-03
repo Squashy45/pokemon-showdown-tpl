@@ -12,7 +12,7 @@ import { Dex, toID, type ID } from "./battle-dex";
 
 export type Args = [string, ...string[]];
 export type KWArgs = { [kw: string]: string };
-export type SideID = 'p1' | 'p2' | 'p3' | 'p4';
+export type SideID = 'p1' | 'p2' | 'p3' | 'p4' | 'p5' | 'p6';
 export type InflectionCategories = { [placeholder: string]: string };
 type BattleTextTableName = 'Default' | 'Moves' | 'Abilities' | 'Items';
 type RenderValue = string | {
@@ -27,6 +27,8 @@ export class BattleTextParser {
 	p2 = "Player 2";
 	p3 = "Player 3";
 	p4 = "Player 4";
+	p5 = "Player 5";
+	p6 = "Player 6";
 	perspective: SideID;
 	language: string;
 	gen = 9;
@@ -567,9 +569,9 @@ export class BattleTextParser {
 	pokemon(pokemon: string) {
 		if (!pokemon) return '';
 		let side = pokemon.slice(0, 2);
-		if (!['p1', 'p2', 'p3', 'p4'].includes(side)) return `???pokemon:${pokemon}???`;
+		if (!['p1', 'p2', 'p3', 'p4', 'p5', 'p6'].includes(side)) return `???pokemon:${pokemon}???`;
 		const name = this.pokemonName(pokemon);
-		const isNear = side === this.perspective || side === BattleTextParser.allyID(side as SideID);
+		const isNear = BattleTextParser.sameTeam(side as SideID, this.perspective);
 		const template = this.defaultText(isNear ? 'pokemon' : 'opposingPokemon');
 		return this.render(template, { NICKNAME: name });
 	}
@@ -593,6 +595,8 @@ export class BattleTextParser {
 		if (side === 'p2') return this.p2;
 		if (side === 'p3') return this.p3;
 		if (side === 'p4') return this.p4;
+		if (side === 'p5') return this.p5;
+		if (side === 'p6') return this.p6;
 		return `???side:${side}???`;
 	}
 
@@ -604,9 +608,13 @@ export class BattleTextParser {
 		return '';
 	}
 
+	static sameTeam(sideid: SideID, perspective: SideID) {
+		return Number(sideid.charAt(1)) % 2 === Number(perspective.charAt(1)) % 2;
+	}
+
 	team(side: string, isFar = false) {
 		side = side.slice(0, 2);
-		if (side === this.perspective || side === BattleTextParser.allyID(side as SideID)) {
+		if (BattleTextParser.sameTeam(side as SideID, this.perspective)) {
 			return this.defaultText(!isFar ? 'team' : 'opposingTeam');
 		}
 		return this.defaultText(isFar ? 'team' : 'opposingTeam');
@@ -622,7 +630,7 @@ export class BattleTextParser {
 
 	party(side: string) {
 		side = side.slice(0, 2);
-		if (side === this.perspective || side === BattleTextParser.allyID(side as SideID)) {
+		if (BattleTextParser.sameTeam(side as SideID, this.perspective)) {
 			return this.defaultText('party');
 		}
 		return this.defaultText('opposingParty');
@@ -821,6 +829,10 @@ export class BattleTextParser {
 				this.p3 = name;
 			} else if (side === 'p4' && name) {
 				this.p4 = name;
+			} else if (side === 'p5' && name) {
+				this.p5 = name;
+			} else if (side === 'p6' && name) {
+				this.p6 = name;
 			}
 			return '';
 		}

@@ -42,6 +42,14 @@ License: GPLv2
 	width: 640px;
 	height: 360px;
 }
+.battle.multi6,
+.battle.multi6 .innerbattle {
+	width: 820px;
+}
+.battle.multi6 .backdrop {
+	width: 880px;
+	background-size: cover;
+}
 .battle-log-add {
 	position: absolute;
 	text-align: left;
@@ -331,6 +339,30 @@ License: GPLv2
 }
 .trainer-far2 {
 	bottom: 75px;
+}
+
+.battle.multi6 .trainer-near3-0,
+.battle.multi6 .trainer-far3-0 {
+	top: 4px;
+	bottom: auto;
+}
+.battle.multi6 .trainer-near3-1,
+.battle.multi6 .trainer-far3-1 {
+	top: 121px;
+	bottom: auto;
+}
+.battle.multi6 .trainer-near3-2,
+.battle.multi6 .trainer-far3-2 {
+	top: 238px;
+	bottom: auto;
+}
+.battle.multi6 .trainer div.trainersprite {
+	height: 54px;
+	background-position: center top;
+	background-size: auto 54px;
+}
+.battle.multi6 .trainer div.teamicons {
+	height: 30px;
 }
 
 .trainer strong {

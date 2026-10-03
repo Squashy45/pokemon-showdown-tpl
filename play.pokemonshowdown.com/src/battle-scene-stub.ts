@@ -33,6 +33,7 @@ export class BattleSceneStub {
 	message(message: string, hiddenMessage?: string): void { }
 	pause(): void { }
 	setMute(muted: boolean): void { }
+	setBattleLayout(gameType: string): void { }
 	preemptCatchup(): void { }
 	removeSideCondition(siden: number, id: ID): void { }
 	reset(): void { }

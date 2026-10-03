@@ -669,7 +669,7 @@ export class Side {
 	constructor(battle: Battle, n: number) {
 		this.battle = battle;
 		this.n = n;
-		this.sideid = ['p1', 'p2', 'p3', 'p4'][n] as SideID;
+		this.sideid = `p${n + 1}` as SideID;
 		this.isFar = !!(n % 2);
 	}
 
@@ -1140,6 +1140,8 @@ export class Battle {
 	p2: Side = null!;
 	p3?: Side = null!;
 	p4?: Side = null!;
+	p5?: Side = null!;
+	p6?: Side = null!;
 	pokemonControlled = 0;
 	sides: Side[] = null!;
 	myPokemon: ServerPokemon[] | null = null;
@@ -1152,7 +1154,7 @@ export class Battle {
 	speciesClause = false;
 	tier = '';
 	format = Dex.formats.get('');
-	gameType: 'singles' | 'doubles' | 'triples' | 'multi' | 'freeforall' | 'rotation' = 'singles';
+	gameType: 'singles' | 'doubles' | 'triples' | 'multi' | 'multi6' | 'freeforall' | 'rotation' = 'singles';
 	compatMode = true;
 	rated: string | boolean = false;
 	rules: { [ruleName: string]: 1 | undefined } = {};
@@ -1360,6 +1362,8 @@ export class Battle {
 		this.p2 = null!;
 		this.p3 = null!;
 		this.p4 = null!;
+		this.p5 = null!;
+		this.p6 = null!;
 	}
 
 	log(args: Args, kwArgs?: KWArgs, preempt?: boolean) {
@@ -1390,10 +1394,7 @@ export class Battle {
 		}
 		this.nearSide.isFar = false;
 		this.farSide.isFar = true;
-		if (this.sides.length > 2) {
-			this.sides[this.nearSide.n + 2].isFar = false;
-			this.sides[this.farSide.n + 2].isFar = true;
-		}
+		for (const battleSide of this.sides) battleSide.isFar = battleSide.n % 2 !== this.nearSide.n % 2;
 
 		this.resetToCurrentTurn();
 	}
@@ -1602,7 +1603,7 @@ export class Battle {
 					for (const active of this.getAllActive()) {
 						if (active === pokemon) continue;
 						// Pressure affects allies in gen 3 and 4
-						if (this.gen <= 4 || (active.side !== pokemon.side && active.side.ally !== pokemon.side)) {
+						if (this.gen <= 4 || active.side.n % 2 !== pokemon.side.n % 2) {
 							foeTargets.push(active);
 						}
 					}
@@ -3456,10 +3457,11 @@ export class Battle {
 		return null;
 	}
 	getSide(sidename: string): Side {
-		if (sidename === 'p1' || sidename.startsWith('p1:')) return this.p1;
-		if (sidename === 'p2' || sidename.startsWith('p2:')) return this.p2;
-		if ((sidename === 'p3' || sidename.startsWith('p3:')) && this.p3) return this.p3;
-		if ((sidename === 'p4' || sidename.startsWith('p4:')) && this.p4) return this.p4;
+		const sideMatch = /^p([1-6])(?::|$)/.exec(sidename);
+		if (sideMatch) {
+			const side = this.sides[Number(sideMatch[1]) - 1];
+			if (side) return side;
+		}
 		if (this.nearSide.id === sidename) return this.nearSide;
 		if (this.farSide.id === sidename) return this.farSide;
 		if (this.nearSide.name === sidename) return this.nearSide;
@@ -3551,7 +3553,24 @@ export class Battle {
 		case 'gametype': {
 			this.gameType = args[1] as any;
 			this.compatMode = false;
+			this.scene.setBattleLayout(args[1]);
 			switch (args[1]) {
+			case 'multi6': {
+				this.pokemonControlled = 1;
+				if (!this.p3) this.p3 = new Side(this, 2);
+				if (!this.p4) this.p4 = new Side(this, 3);
+				if (!this.p5) this.p5 = new Side(this, 4);
+				if (!this.p6) this.p6 = new Side(this, 5);
+				this.sides = [this.p1, this.p2, this.p3, this.p4, this.p5, this.p6];
+				for (const side of this.sides) {
+					side.isFar = !!(side.n % 2);
+					side.ally = this.sides[(side.n + 2) % 6];
+					side.foe = side.n % 2 ? this.p1 : this.p2;
+				}
+				this.p1.active = this.p3.active = this.p5.active = [null, null, null];
+				this.p2.active = this.p4.active = this.p6.active = [null, null, null];
+				break;
+			}
 			case 'multi':
 			case 'freeforall':
 				this.pokemonControlled = 1;

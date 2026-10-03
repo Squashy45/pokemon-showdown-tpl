@@ -2058,8 +2058,8 @@ export const PS = new class extends PSModel {
 		}
 		return false;
 	}
-	chooseBattleLayout(width: number, height: number, preference?: BattleLayoutPreference | null) {
-		let scale = Math.min(1, width / 640, height / 360);
+	chooseBattleLayout(width: number, height: number, preference?: BattleLayoutPreference | null, nativeWidth = 640) {
+		let scale = Math.min(1, width / nativeWidth, height / 360);
 		const uncappedBattleHeight = Math.round(360 * scale);
 		let layout: BattlePanelLayout = width > 780 ? 'side-by-side' :
 			height < uncappedBattleHeight + 150 ? 'scrolling' : 'top-and-bottom';
@@ -2069,13 +2069,13 @@ export const PS = new class extends PSModel {
 			layout = preferredLayout;
 		}
 		if (layout === 'side-by-side' && width >= 500) {
-			scale = Math.min(scale, Math.max(0, width - 180) / 640);
+			scale = Math.min(scale, Math.max(0, width - 180) / nativeWidth);
 		} else if (layout === 'top-and-bottom') {
 			scale = Math.min(scale, Math.max(0, height - 180) / 360);
 		}
 
 		const battleHeight = Math.round(360 * scale);
-		const battleWidth = Math.round(640 * scale);
+		const battleWidth = Math.round(nativeWidth * scale);
 		let overlayControls = height < battleHeight + 180;
 		if (preferredLayout) {
 			overlayControls = !!preference?.endsWith('-overlay');

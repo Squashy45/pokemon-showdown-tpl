@@ -31,6 +31,8 @@ type BattleDesc = {
 	p2?: string,
 	p3?: string,
 	p4?: string,
+	p5?: string,
+	p6?: string,
 };
 export class BattlesRoom extends PSRoom {
 	override readonly classType = 'battles';
@@ -632,7 +634,10 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 		overlayControls: boolean,
 	} {
 		const room = this.props.room;
-		return PS.chooseBattleLayout(room.width, room.height, PS.prefs.battlelayout);
+		return PS.chooseBattleLayout(
+			room.width, room.height, PS.prefs.battlelayout,
+			room.battle?.gameType === 'multi6' ? 820 : 640
+		);
 	}
 	/** @deprecated ONLY FOR SHOWDEX */
 	private receiveRequest(request: BattleRequest | null) {}

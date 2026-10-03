@@ -601,7 +601,7 @@ export class BattleTooltips {
 			case 'randomNormal': return 'randomNormalDoubles';
 			default: return move.target;
 			}
-		case 'triples':
+		case 'triples': case 'multi6':
 			return move.target;
 		case 'freeforall':
 			switch (move.target) {

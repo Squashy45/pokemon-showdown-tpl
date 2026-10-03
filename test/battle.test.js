@@ -125,9 +125,50 @@ describe('Battle', () => {
 
 		assert.deepEqual(p1leafeon.moveTrack, [['Knock Off', 1]]);
 	});
+
+	it('supports six independent players in multi6 battles', () => {
+		const battle = new Battle({
+			debug: true,
+			log: [
+				'|gametype|multi6',
+				'|player|p1|Alpha',
+				'|player|p2|Bravo',
+				'|player|p3|Charlie',
+				'|player|p4|Delta',
+				'|player|p5|Echo',
+				'|player|p6|Foxtrot',
+				'|teamsize|p1|1', '|teamsize|p2|1', '|teamsize|p3|1',
+				'|teamsize|p4|1', '|teamsize|p5|1', '|teamsize|p6|1',
+				'|start',
+				'|switch|p1a: Bulbasaur|Bulbasaur, L100|100/100',
+				'|switch|p2a: Charmander|Charmander, L100|100/100',
+				'|switch|p3b: Squirtle|Squirtle, L100|100/100',
+				'|switch|p4b: Pikachu|Pikachu, L100|100/100',
+				'|switch|p5c: Eevee|Eevee, L100|100/100',
+				'|switch|p6c: Mew|Mew, L100|100/100',
+				'|move|p6c: Mew|Psychic|p1a: Bulbasaur',
+			],
+		});
+
+		assert.equal(battle.sides.length, 6);
+		assert.equal(battle.sides[5].name, 'Foxtrot');
+		assert.equal(battle.sides[5].active[2].name, 'Mew');
+		assert.equal(battle.sides[4].active, battle.sides[0].active);
+		assert.equal(battle.sides[5].active, battle.sides[1].active);
+	});
 });
 
 describe('Text parser', () => {
+	it('recognizes player names and team perspective through p6', () => {
+		const parser = new BattleTextParser('p5');
+		parser.parseArgsInner(['player', 'p6', 'Foxtrot'], {});
+		assert.equal(parser.trainer('p6'), 'Foxtrot');
+		assert.equal(BattleTextParser.sameTeam('p1', 'p5'), true);
+		assert.equal(BattleTextParser.sameTeam('p2', 'p5'), false);
+		parser.defaultText = () => '{NICKNAME}';
+		assert.doesNotMatch(parser.pokemon('p6c: Mew'), /\?\?\?/);
+	});
+
 	it.skip('should process messages correctly', () => {
 		let parser = new BattleTextParser();
 

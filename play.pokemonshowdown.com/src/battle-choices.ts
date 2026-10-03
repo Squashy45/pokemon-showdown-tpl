@@ -17,7 +17,7 @@ import { Dex, toID, type ID } from "./battle-dex";
 
 export interface BattleRequestSideInfo {
 	name: string;
-	id: 'p1' | 'p2' | 'p3' | 'p4';
+	id: 'p1' | 'p2' | 'p3' | 'p4' | 'p5' | 'p6';
 	pokemon: ServerPokemon[];
 }
 export interface BattleRequestAllyInfo {
