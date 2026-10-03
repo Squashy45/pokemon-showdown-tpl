@@ -23,7 +23,13 @@ createServer((request, response) => {
 		response.writeHead(403).end('Forbidden');
 		return;
 	}
-	if (!existsSync(file) || statSync(file).isDirectory()) file = resolve(root, 'index-new.html');
+	if (!existsSync(file) || statSync(file).isDirectory()) {
+		if (extname(pathname)) {
+			response.writeHead(404).end('Not found');
+			return;
+		}
+		file = resolve(root, 'index-new.html');
+	}
 	response.setHeader('Cache-Control', 'no-cache');
 	response.setHeader('Content-Type', types[extname(file)] || 'application/octet-stream');
 	createReadStream(file).on('error', () => response.writeHead(500).end('Read error')).pipe(response);
