@@ -20,6 +20,7 @@ describe('Six-player Triples Multi Battle', () => {
 
 		assert.equal(battle.sides.length, 6);
 		assert.equal(battle.activePerHalf, 3);
+		assert(battle.log.includes('|gametype|multi6'));
 		assert.equal(battle.p1.foe, battle.p6);
 		assert.equal(battle.p3.foe, battle.p4);
 		assert.equal(battle.p5.foe, battle.p2);
@@ -57,6 +58,7 @@ describe('Six-player Triples Multi Battle', () => {
 		assert.equal(battle.p1.pokemonLeft, 0);
 		assert.equal(battle.p3.pokemonLeft, 0);
 		assert.equal(battle.p5.multiPosition, 1);
+		assert(battle.log.some(line => line.startsWith('|swap|p5c: Victini|1')));
 		assert.equal(battle.p5.active[0].getLocOf(battle.p5.active[0]), -2);
 		assert.equal(battle.p5.active[0].getLocOf(battle.p2.active[0]), 1);
 		assert.equal(battle.p5.active[0].getLocOf(battle.p4.active[0]), 2);

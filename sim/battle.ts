@@ -338,7 +338,7 @@ export class Battle {
 		}
 		this.inputLog.push(`>start ` + JSON.stringify(inputOptions));
 
-		this.add('gametype', this.gameType);
+		this.add('gametype', this.gameType === 'multi' && this.sides.length === 6 ? 'multi6' : this.gameType);
 
 		// timing is early enough to hook into ModifySpecies event
 		for (const rule of this.ruleTable.keys()) {
@@ -2609,7 +2609,15 @@ export class Battle {
 			const teamSides = this.sides.filter(side => side.n % 2 === teamParity);
 			for (const side of teamSides) side.multiPosition = Math.floor(side.n / 2);
 			const survivingSides = teamSides.filter(side => side.pokemonLeft);
-			if (survivingSides.length === 1) survivingSides[0].multiPosition = 1;
+			if (survivingSides.length === 1) {
+				const survivingSide = survivingSides[0];
+				const oldPosition = survivingSide.multiPosition;
+				survivingSide.multiPosition = 1;
+				const active = survivingSide.active[0];
+				if (oldPosition !== 1 && active && !active.fainted) {
+					this.add('swap', active, 1, '[silent]');
+				}
+			}
 		}
 	}
 
