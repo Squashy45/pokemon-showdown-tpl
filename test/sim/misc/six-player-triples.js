@@ -59,10 +59,29 @@ describe('Six-player Triples Multi Battle', () => {
 		assert.equal(battle.p3.pokemonLeft, 0);
 		assert.equal(battle.p5.multiPosition, 1);
 		assert(battle.log.some(line => line.startsWith('|swap|p5c: Victini|1')));
+		const recenterCount = battle.log.filter(line => line.startsWith('|swap|p5c: Victini|1')).length;
+		battle.p2.active[0].faint();
+		battle.faintMessages();
+		assert.equal(
+			battle.log.filter(line => line.startsWith('|swap|p5c: Victini|1')).length,
+			recenterCount,
+			'related faint processing should not emit duplicate recenter messages'
+		);
 		assert.equal(battle.p5.active[0].getLocOf(battle.p5.active[0]), -2);
 		assert.equal(battle.p5.active[0].getLocOf(battle.p2.active[0]), 1);
 		assert.equal(battle.p5.active[0].getLocOf(battle.p4.active[0]), 2);
 		assert.equal(battle.p5.active[0].getLocOf(battle.p6.active[0]), 3);
+	});
+
+	it('should include both teammates in every player request', () => {
+		battle = common.createBattle({ formatid: 'gen9natdexagtriple' }, [
+			team('Mew'), team('Mewtwo'), team('Celebi'),
+			team('Jirachi'), team('Victini'), team('Deoxys'),
+		]);
+		battle.makeChoices();
+
+		assert.deepEqual(battle.p1.activeRequest.allies.map(ally => ally.id), ['p3', 'p5']);
+		assert.deepEqual(battle.p6.activeRequest.allies.map(ally => ally.id), ['p2', 'p4']);
 	});
 
 	it('should preserve six-player state through serialization', () => {

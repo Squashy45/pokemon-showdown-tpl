@@ -12,12 +12,15 @@ else
 fi
 
 cd "$client_dir"
-if [[ ! -d node_modules ]]; then
-	npm install
-fi
+npm install
 cp config/config-example.js config/config.js
 cat config/tpl-config.js >> config/config.js
-node build full
+
+# Generate client data from the live TPL server checkout so custom formats,
+# species, and learnsets cannot drift from the simulator.
+rm -rf caches/pokemon-showdown
+ln -s /root/pokemon-showdown caches/pokemon-showdown
+node build full --no-update
 
 pm2 delete tpl-client >/dev/null 2>&1 || true
 pm2 start tpl-static-server.mjs --name tpl-client -- 8081

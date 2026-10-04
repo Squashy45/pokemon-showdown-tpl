@@ -19,7 +19,7 @@ import { Teams } from './teams';
 import { Field } from './field';
 import { Pokemon, type EffectState, RESTORATIVE_BERRIES } from './pokemon';
 import { PRNG, type PRNGSeed } from './prng';
-import { type MoveRequest, type ChoiceRequest, Side } from './side';
+import { type ChoiceRequest, Side } from './side';
 import { State } from './state';
 import { BattleQueue, type Action } from './battle-queue';
 import { BattleActions } from './battle-actions';
@@ -1501,9 +1501,6 @@ export class Battle {
 				if (!side.pokemonLeft) continue;
 				const activeData = side.active.map(pokemon => pokemon?.getMoveRequestData());
 				requests[i] = { active: activeData, side: side.getRequestData() };
-				if (side.allySide) {
-					(requests[i] as MoveRequest).ally = side.allySide.getRequestData(true);
-				}
 			}
 			break;
 		}
@@ -1514,6 +1511,11 @@ export class Battle {
 				if (!this.supportCancel || !multipleRequestsExist) requests[i].noCancel = true;
 			} else {
 				requests[i] = { wait: true, side: this.sides[i].getRequestData() };
+			}
+			const allyData = this.sides[i].allySides.map(ally => ally.getRequestData(true));
+			if (allyData.length) {
+				requests[i].ally = allyData[0];
+				requests[i].allies = allyData;
 			}
 		}
 
@@ -2607,16 +2609,14 @@ export class Battle {
 		if (this.gameType !== 'multi' || this.sides.length !== 6) return;
 		for (const teamParity of [0, 1]) {
 			const teamSides = this.sides.filter(side => side.n % 2 === teamParity);
-			for (const side of teamSides) side.multiPosition = Math.floor(side.n / 2);
 			const survivingSides = teamSides.filter(side => side.pokemonLeft);
-			if (survivingSides.length === 1) {
-				const survivingSide = survivingSides[0];
-				const oldPosition = survivingSide.multiPosition;
-				survivingSide.multiPosition = 1;
-				const active = survivingSide.active[0];
-				if (oldPosition !== 1 && active && !active.fainted) {
-					this.add('swap', active, 1, '[silent]');
-				}
+			for (const side of teamSides) {
+				const desiredPosition = survivingSides.length === 1 && side === survivingSides[0] ?
+					1 : Math.floor(side.n / 2);
+				if (side.multiPosition === desiredPosition) continue;
+				const active = side.active[0];
+				if (active && !active.fainted) this.add('swap', active, desiredPosition, '[silent]');
+				side.multiPosition = desiredPosition;
 			}
 		}
 	}

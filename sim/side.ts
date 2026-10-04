@@ -133,6 +133,8 @@ export interface SwitchRequest {
 	teamPreview?: undefined;
 	forceSwitch: boolean[];
 	side: SideRequestData;
+	ally?: SideRequestData;
+	allies?: SideRequestData[];
 	noCancel?: boolean;
 	update?: boolean;
 }
@@ -142,6 +144,8 @@ export interface TeamPreviewRequest {
 	forceSwitch?: undefined;
 	maxChosenTeamSize?: number;
 	side: SideRequestData;
+	ally?: SideRequestData;
+	allies?: SideRequestData[];
 	noCancel?: boolean;
 }
 export interface MoveRequest {
@@ -151,6 +155,7 @@ export interface MoveRequest {
 	active: PokemonMoveRequestData[];
 	side: SideRequestData;
 	ally?: SideRequestData;
+	allies?: SideRequestData[];
 	noCancel?: boolean;
 	update?: boolean;
 }
@@ -159,6 +164,8 @@ export interface WaitRequest {
 	teamPreview?: undefined;
 	forceSwitch?: undefined;
 	side: SideRequestData;
+	ally?: SideRequestData;
+	allies?: SideRequestData[];
 	noCancel?: boolean;
 }
 export type ChoiceRequest = SwitchRequest | TeamPreviewRequest | MoveRequest | WaitRequest;
