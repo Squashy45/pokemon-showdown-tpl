@@ -29,7 +29,7 @@ export const NARROW_MODE_HEADER_WIDTH = 280;
 
 export interface ServerInfo {
 	id: ID;
-	protocol: string;
+	protocol?: 'http' | 'https';
 	host: string;
 	port: number;
 	httpport?: number;
@@ -850,7 +850,8 @@ class PSServer {
 	altport = Config.defaultserver.altport;
 	registered = Config.defaultserver.registered;
 	prefix = '/showdown';
-	protocol: 'http' | 'https' = Config.defaultserver.httpport ? 'https' : 'http';
+	protocol: 'http' | 'https' = Config.defaultserver.protocol ||
+		(Config.defaultserver.httpport ? 'https' : 'http');
 	groups: { [symbol: string]: PSGroup } = {
 		'#': {
 			name: "Room Owner (#)",

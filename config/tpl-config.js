@@ -2,10 +2,11 @@
 Config.testclient = true;
 Config.defaultserver = {
 	id: 'tpl',
-	host: '144-126-207-98.insecure.psim.us',
-	port: 443,
-	httpport: 80,
-	altport: 80,
+	protocol: 'http',
+	host: '144.126.207.98',
+	port: 8000,
+	httpport: 8000,
+	altport: 8000,
 	registered: true,
 };
 Config.server = Config.defaultserver;
