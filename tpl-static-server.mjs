@@ -1,5 +1,6 @@
 import { createReadStream, existsSync, statSync } from 'node:fs';
 import { createServer } from 'node:http';
+import { request as httpsRequest } from 'node:https';
 import { extname, resolve, sep } from 'node:path';
 
 const root = resolve('play.pokemonshowdown.com');
@@ -17,7 +18,39 @@ const types = {
 };
 
 createServer((request, response) => {
-	const pathname = decodeURIComponent(new URL(request.url, `http://${request.headers.host}`).pathname);
+	const requestURL = new URL(request.url, `http://${request.headers.host}`);
+	const pathname = decodeURIComponent(requestURL.pathname);
+	if (pathname === '/~~tpl/action.php') {
+		const headers = {
+			'content-type': request.headers['content-type'] || 'application/x-www-form-urlencoded',
+			'user-agent': request.headers['user-agent'] || 'TPL Pokemon Showdown client',
+		};
+		if (request.headers['content-length']) headers['content-length'] = request.headers['content-length'];
+		if (request.headers.cookie) headers.cookie = request.headers.cookie;
+
+		const upstream = httpsRequest({
+			hostname: 'play.pokemonshowdown.com',
+			path: `${pathname}${requestURL.search}`,
+			method: request.method,
+			headers,
+		}, upstreamResponse => {
+			response.statusCode = upstreamResponse.statusCode || 502;
+			response.setHeader('Cache-Control', 'no-store');
+			if (upstreamResponse.headers['content-type']) {
+				response.setHeader('Content-Type', upstreamResponse.headers['content-type']);
+			}
+			const cookies = upstreamResponse.headers['set-cookie'];
+			if (cookies) {
+				response.setHeader('Set-Cookie', cookies.map(cookie =>
+					cookie.replace(/;\s*Domain=[^;]+/i, '').replace(/;\s*Secure/ig, '')
+				));
+			}
+			upstreamResponse.pipe(response);
+		});
+		upstream.on('error', () => response.writeHead(502).end('Login server unavailable'));
+		request.pipe(upstream);
+		return;
+	}
 	let file = resolve(root, `.${pathname}`);
 	if (file !== root && !file.startsWith(root + sep)) {
 		response.writeHead(403).end('Forbidden');
