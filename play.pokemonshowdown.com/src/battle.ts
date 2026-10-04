@@ -642,6 +642,8 @@ export class Side {
 	id = '';
 	sideid: SideID;
 	n: number;
+	/** Visual field position for one-Pokemon-per-trainer Multi Battles. */
+	multiPosition: number;
 	isFar: boolean;
 	foe: Side = null!;
 	ally: Side | null = null;
@@ -669,6 +671,7 @@ export class Side {
 	constructor(battle: Battle, n: number) {
 		this.battle = battle;
 		this.n = n;
+		this.multiPosition = Math.floor(n / 2);
 		this.sideid = `p${n + 1}` as SideID;
 		this.isFar = !!(n % 2);
 	}
@@ -1146,6 +1149,7 @@ export class Battle {
 	sides: Side[] = null!;
 	myPokemon: ServerPokemon[] | null = null;
 	myAllyPokemon: ServerPokemon[] | null = null;
+	myAllyPokemonBySide: Record<string, ServerPokemon[]> = {};
 	lastMove = '';
 
 	gen = 8;
@@ -1334,6 +1338,7 @@ export class Battle {
 		}
 		this.myPokemon = null;
 		this.myAllyPokemon = null;
+		this.myAllyPokemonBySide = {};
 
 		// DOM state
 		this.scene.reset();
@@ -3376,6 +3381,9 @@ export class Battle {
 			const slotChart: { [k: string]: number } = { a: 0, b: 1, c: 2, d: 3, e: 4, f: 5 };
 			siden = parseInt(name.charAt(1), 10) - 1;
 			slot = slotChart[name.charAt(2)];
+			if (this.gameType === 'multi6' && this.sides?.[siden]) {
+				slot = this.sides[siden].multiPosition;
+			}
 			name = name.slice(5);
 			pokemonid = `p${siden + 1}: ${name}`;
 		}
@@ -3835,6 +3843,7 @@ export class Battle {
 					if (target) args[2] = target.ident;
 				}
 				poke.side.swapTo(poke, targetIndex);
+				if (this.gameType === 'multi6') poke.side.multiPosition = targetIndex;
 			}
 			this.log(args, kwArgs);
 			break;

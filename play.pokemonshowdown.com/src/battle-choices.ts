@@ -66,6 +66,7 @@ export interface BattleMoveRequest {
 	rqid: number;
 	side: BattleRequestSideInfo;
 	ally?: BattleRequestAllyInfo;
+	allies?: BattleRequestAllyInfo[];
 	active: (BattleRequestActivePokemon | null)[];
 	noCancel?: boolean;
 	targetable?: boolean;
@@ -74,6 +75,7 @@ export interface BattleSwitchRequest {
 	requestType: 'switch';
 	rqid: number;
 	ally?: BattleRequestAllyInfo;
+	allies?: BattleRequestAllyInfo[];
 	side: BattleRequestSideInfo;
 	forceSwitch: boolean[];
 	noCancel?: boolean;
@@ -83,6 +85,7 @@ export interface BattleTeamRequest {
 	rqid: number;
 	side: BattleRequestSideInfo;
 	ally?: BattleRequestAllyInfo;
+	allies?: BattleRequestAllyInfo[];
 	maxTeamSize?: number;
 	maxChosenTeamSize?: number;
 	chosenTeamSize?: number;
@@ -93,6 +96,7 @@ export interface BattleWaitRequest {
 	rqid: number;
 	side: undefined;
 	ally: undefined;
+	allies?: BattleRequestAllyInfo[];
 	noCancel?: boolean;
 }
 export type BattleRequest = BattleMoveRequest | BattleSwitchRequest | BattleTeamRequest | BattleWaitRequest;
@@ -643,6 +647,12 @@ export class BattleChoiceBuilder {
 		}
 		if (request.ally) {
 			for (const serverPokemon of request.ally.pokemon) {
+				battle.parseDetails(serverPokemon.ident.substr(4), serverPokemon.ident, serverPokemon.details, serverPokemon);
+				battle.parseHealth(serverPokemon.condition, serverPokemon);
+			}
+		}
+		for (const ally of request.allies || []) {
+			for (const serverPokemon of ally.pokemon) {
 				battle.parseDetails(serverPokemon.ident.substr(4), serverPokemon.ident, serverPokemon.details, serverPokemon);
 				battle.parseHealth(serverPokemon.condition, serverPokemon);
 			}

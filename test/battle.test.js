@@ -155,6 +155,11 @@ describe('Battle', () => {
 		assert.equal(battle.sides[5].active[2].name, 'Mew');
 		assert.equal(battle.sides[4].active, battle.sides[0].active);
 		assert.equal(battle.sides[5].active, battle.sides[1].active);
+
+		battle.add('|swap|p5c: Eevee|1|[silent]');
+		assert.equal(battle.sides[4].multiPosition, 1);
+		assert.equal(battle.sides[4].active[1].name, 'Eevee');
+		assert.equal(battle.getPokemon('p5c: Eevee'), battle.sides[4].active[1]);
 	});
 });
 

@@ -274,6 +274,13 @@ export class BattleRoom extends ChatRoom {
 		if (request.ally) {
 			this.battle.myAllyPokemon = request.ally.pokemon;
 		}
+		if (request.allies) {
+			this.battle.myAllyPokemonBySide = {};
+			for (const ally of request.allies) {
+				this.battle.myAllyPokemonBySide[ally.id] = ally.pokemon;
+			}
+			this.battle.myAllyPokemon = request.allies[0]?.pokemon || null;
+		}
 
 		this.request = request;
 		this.choices = new BattleChoiceBuilder(request);
@@ -826,7 +833,7 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 		const battle = this.props.room.battle;
 		const dex = battle.dex;
 		const pokemonIndex = choices.index();
-		const activeIndex = battle.mySide.n > 1 ? pokemonIndex + battle.pokemonControlled : pokemonIndex;
+		const activeIndex = pokemonIndex + battle.mySide.multiPosition * battle.pokemonControlled;
 		const serverPokemon = choices.request.side!.pokemon[pokemonIndex];
 		const valueTracker = new ModifiableValue(battle, battle.nearSide.active[activeIndex]!, serverPokemon);
 		const tooltips = (battle.scene as BattleScene).tooltips;
@@ -905,7 +912,7 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 		}
 		const moveChoice = choices.stringChoice(choices.current);
 
-		const userSlot = choices.index() + Math.floor(battle.mySide.n / 2) * battle.pokemonControlled;
+		const userSlot = choices.index() + battle.mySide.multiPosition * battle.pokemonControlled;
 		const userSlotCross = battle.farSide.active.length - 1 - userSlot;
 
 		return <>
@@ -978,6 +985,14 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 					tooltip: `allypokemon|${i}`,
 				});
 			})}
+			{request.allies?.filter(ally => ally.id !== request.ally?.id).map(ally =>
+				ally.pokemon.map((serverPokemon, i) => this.renderPokemonButton({
+					pokemon: serverPokemon,
+					cmd: `/switch notMine`,
+					disabled: true,
+					tooltip: `allypokemon|${ally.id}|${i}`,
+				}))
+			)}
 		</div>;
 	}
 	renderTeamPreviewChooser(request: | BattleTeamRequest, choices: BattleChoiceBuilder) {

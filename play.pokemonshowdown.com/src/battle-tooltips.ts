@@ -329,7 +329,7 @@ export class BattleTooltips {
 			let move = this.battle.dex.moves.get(args[1]);
 			let teamIndex = parseInt(args[2], 10);
 			let pokemon = this.battle.nearSide.active[
-				teamIndex + this.battle.pokemonControlled * Math.floor(this.battle.mySide.n / 2)
+				teamIndex + this.battle.pokemonControlled * this.battle.mySide.multiPosition
 			];
 			let gmaxMove = args[3] ? this.battle.dex.moves.get(args[3]) : undefined;
 			if (!pokemon) return false;
@@ -396,16 +396,19 @@ export class BattleTooltips {
 			buf = this.showPokemonTooltip(pokemon, serverPokemon);
 			break;
 		}
-		case 'allypokemon': { // allypokemon|POKEMON
+		case 'allypokemon': { // allypokemon|[SIDE|]POKEMON
 			// mouse over ally's pokemon in multi battles
 			// serverPokemon definitely exists, sidePokemon maybe
 			// let side = this.battle.mySide.ally;
-			let activeIndex = parseInt(args[1], 10);
+			const hasSide = args.length > 2;
+			const sideid = hasSide ? args[1] : '';
+			let activeIndex = parseInt(args[hasSide ? 2 : 1], 10);
 			let pokemon = null;
 			/* if (activeIndex < side.pokemon.length) {
 				pokemon = side.pokemon[activeIndex] || side.ally ? side.ally.pokemon[activeIndex] : null;
 			} */
-			let serverPokemon = this.battle.myAllyPokemon ? this.battle.myAllyPokemon[activeIndex] : null;
+			const allyPokemon = sideid ? this.battle.myAllyPokemonBySide[sideid] : this.battle.myAllyPokemon;
+			let serverPokemon = allyPokemon ? allyPokemon[activeIndex] : null;
 			buf = this.showPokemonTooltip(pokemon, serverPokemon);
 			break;
 		}
