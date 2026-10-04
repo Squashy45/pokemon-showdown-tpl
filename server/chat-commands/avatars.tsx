@@ -98,7 +98,7 @@ export const Avatars = new class {
 	}
 	exists(avatar: string) {
 		if (avatar.includes('.')) {
-			return FS(`config/avatars/${avatar}`).isFile();
+			return FS(`config/avatars/${avatar}`).isFile().catch(() => false);
 		}
 		if (!avatar.startsWith('#')) {
 			return OFFICIAL_AVATARS.has(avatar);
