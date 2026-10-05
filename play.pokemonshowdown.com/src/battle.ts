@@ -3571,7 +3571,7 @@ export class Battle {
 				if (!this.p6) this.p6 = new Side(this, 5);
 				this.sides = [this.p1, this.p2, this.p3, this.p4, this.p5, this.p6];
 				for (const side of this.sides) {
-					side.isFar = !!(side.n % 2);
+					side.isFar = side.n % 2 !== this.nearSide.n % 2;
 					side.ally = this.sides[(side.n + 2) % 6];
 					side.foe = side.n % 2 ? this.p1 : this.p2;
 				}

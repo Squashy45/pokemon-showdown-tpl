@@ -156,6 +156,13 @@ describe('Battle', () => {
 		assert.equal(battle.sides[4].active, battle.sides[0].active);
 		assert.equal(battle.sides[5].active, battle.sides[1].active);
 
+		battle.setViewpoint('p6');
+		assert.equal(battle.mySide, battle.p6);
+		assert.equal(battle.nearSide, battle.p2);
+		assert.equal(battle.farSide, battle.p1);
+		for (const side of [battle.p2, battle.p4, battle.p6]) assert.equal(side.isFar, false);
+		for (const side of [battle.p1, battle.p3, battle.p5]) assert.equal(side.isFar, true);
+
 		battle.add('|swap|p5c: Eevee|1|[silent]');
 		assert.equal(battle.sides[4].multiPosition, 1);
 		assert.equal(battle.sides[4].active[1].name, 'Eevee');
