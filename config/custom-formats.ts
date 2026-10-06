@@ -134,6 +134,6 @@ export const Formats = [
 				return false;
 			}
 		},
-		unbanlist: ZA_MEGA_UNBANLIST,
+		unbanlist: [...ZA_MEGA_UNBANLIST, 'Floette-Eternal'],
 	},
 ];
