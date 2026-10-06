@@ -12,6 +12,16 @@ describe('Six-player Triples Multi Battle', () => {
 		return [{ species, ability: 'Pressure', moves: ['psychic'] }];
 	}
 
+	it('should allow Z-A Mega Evolutions', () => {
+		const megaSets = [
+			{ species: 'Raichu', item: 'Raichunite X', ability: 'Static', moves: ['Thunderbolt'], evs: { spe: 1 } },
+			{ species: 'Froslass', item: 'Froslassite', ability: 'Cursed Body', moves: ['Shadow Ball'], evs: { spe: 1 } },
+			{ species: 'Baxcalibur', item: 'Baxcalibrite', ability: 'Thermal Exchange', moves: ['Glaive Rush'], evs: { spe: 1 } },
+			{ species: 'Magearna', item: 'Magearnite', ability: 'Soul-Heart', moves: ['Fleur Cannon'], evs: { spe: 1 } },
+		];
+		for (const set of megaSets) assert.legalTeam([set], 'gen9natdexagtriple');
+	});
+
 	it('should arrange and resolve choices from two teams of three trainers', () => {
 		battle = common.createBattle({ formatid: 'gen9natdexagtriple' }, [
 			team('Mew'), team('Mewtwo'), team('Celebi'),
