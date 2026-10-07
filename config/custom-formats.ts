@@ -80,6 +80,7 @@ export const Formats = [
 		playerCount: 6,
 		searchShow: false,
 		ruleset: ['Standard AG', 'NatDex Mod', 'Tera Type Preview'],
+		banlist: ['Durant', 'Revival Blessing'],
 		unbanlist: ZA_MEGA_UNBANLIST,
 	},
 

@@ -2,6 +2,7 @@
 
 const assert = require('./../../assert');
 const common = require('./../../common');
+const { TeamValidator } = require('./../../../dist/sim/team-validator');
 
 describe('Six-player Triples Multi Battle', () => {
 	let battle;
@@ -20,6 +21,19 @@ describe('Six-player Triples Multi Battle', () => {
 			{ species: 'Magearna', item: 'Magearnite', ability: 'Soul-Heart', moves: ['Fleur Cannon'], evs: { spe: 1 } },
 		];
 		for (const set of megaSets) assert.legalTeam([set], 'gen9natdexagtriple');
+	});
+
+	it('should ban Durant and Revival Blessing', () => {
+		const validator = TeamValidator.get('gen9natdexagtriple');
+		const durantProblems = validator.validateTeam([
+			{ species: 'Durant', ability: 'Hustle', moves: ['Iron Head'] },
+		]);
+		const revivalProblems = validator.validateTeam([
+			{ species: 'Pawmot', ability: 'Volt Absorb', moves: ['Revival Blessing'] },
+		]);
+
+		assert.match(durantProblems.join('\n'), /Durant is banned/);
+		assert.match(revivalProblems.join('\n'), /Revival Blessing is banned/);
 	});
 
 	it('should arrange and resolve choices from two teams of three trainers', () => {
