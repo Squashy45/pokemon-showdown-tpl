@@ -81,7 +81,7 @@ export const Formats = [
 		searchShow: false,
 		ruleset: ['Standard AG', 'NatDex Mod', 'Tera Type Preview'],
 		banlist: ['Durant', 'Revival Blessing'],
-		unbanlist: ZA_MEGA_UNBANLIST,
+		unbanlist: [...ZA_MEGA_UNBANLIST, 'Floette-Eternal'],
 	},
 
 	{

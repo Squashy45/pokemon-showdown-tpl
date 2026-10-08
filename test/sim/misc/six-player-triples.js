@@ -19,6 +19,7 @@ describe('Six-player Triples Multi Battle', () => {
 			{ species: 'Froslass', item: 'Froslassite', ability: 'Cursed Body', moves: ['Shadow Ball'], evs: { spe: 1 } },
 			{ species: 'Baxcalibur', item: 'Baxcalibrite', ability: 'Thermal Exchange', moves: ['Glaive Rush'], evs: { spe: 1 } },
 			{ species: 'Magearna', item: 'Magearnite', ability: 'Soul-Heart', moves: ['Fleur Cannon'], evs: { spe: 1 } },
+			{ species: 'Floette-Eternal', item: 'Floettite', ability: 'Flower Veil', moves: ['Light of Ruin'], evs: { spe: 1 } },
 		];
 		for (const set of megaSets) assert.legalTeam([set], 'gen9natdexagtriple');
 	});
