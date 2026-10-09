@@ -681,7 +681,7 @@ export class BattleChoiceBuilder {
 				}
 			}
 		}
-		request.targetable ||= battle.mySide.active.length > 1;
+		request.targetable ||= battle.mySide.active.length > 1 || battle.gameType === 'multi6';
 
 		if (request.active) {
 			request.active = request.active.map(
