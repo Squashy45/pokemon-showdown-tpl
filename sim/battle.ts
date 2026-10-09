@@ -107,6 +107,7 @@ export function extractChannelMessages<T extends ChannelID | -1>(message: string
 interface BattleOptions {
 	format?: Format;
 	formatid: ID;
+	roomid?: string;
 	/** Output callback */
 	send?: (type: string, data: string | string[]) => void;
 	prng?: PRNG; // PRNG override (you usually don't need this, just pass a seed)
@@ -255,7 +256,7 @@ export class Battle {
 		}
 		if (format.battle) Object.assign(this, format.battle);
 
-		this.id = '';
+		this.id = options.roomid || '';
 		this.debugMode = format.debug || !!options.debug;
 		// Require debug mode and explicitly passed true/false
 		this.forceRandomChance = (this.debugMode && typeof options.forceRandomChance === 'boolean') ?
@@ -324,9 +325,10 @@ export class Battle {
 
 		this.send = options.send || (() => {});
 
-		const inputOptions: { formatid: ID, seed: PRNGSeed, rated?: string | true } = {
+		const inputOptions: { formatid: ID, seed: PRNGSeed, roomid?: string, rated?: string | true } = {
 			formatid: options.formatid, seed: this.prngSeed,
 		};
+		if (options.roomid) inputOptions.roomid = options.roomid;
 		if (this.rated) inputOptions.rated = this.rated;
 		if (typeof __version !== 'undefined') {
 			if (__version.head) {

@@ -2,6 +2,7 @@
 
 const assert = require('./../../assert');
 const common = require('./../../common');
+const { Battle } = require('./../../../dist/sim');
 const { TeamValidator } = require('./../../../dist/sim/team-validator');
 
 describe('Six-player Triples Multi Battle', () => {
@@ -66,6 +67,22 @@ describe('Six-player Triples Multi Battle', () => {
 
 		assert.throws(() => battle.p1.choose('move 1'), /Psychic needs a target/);
 		assert.doesNotThrow(() => battle.p1.choose('move 1 +3'));
+	});
+
+	it('should preserve the room ID used by private input records', () => {
+		battle = new Battle({
+			formatid: 'gen9natdexagtriple',
+			roomid: 'battle-gen9natdexagtriple-test',
+			p1: { team: team('Mew') },
+			p2: { team: team('Mewtwo') },
+			p3: { team: team('Celebi') },
+			p4: { team: team('Jirachi') },
+			p5: { team: team('Victini') },
+			p6: { team: team('Deoxys') },
+		});
+
+		assert.equal(battle.id, 'battle-gen9natdexagtriple-test');
+		assert.match(battle.inputLog.join('\n'), /"roomid":"battle-gen9natdexagtriple-test"/);
 	});
 
 	it('should preserve the existing four-player Multi layout', () => {
