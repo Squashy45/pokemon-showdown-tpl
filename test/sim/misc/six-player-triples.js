@@ -53,8 +53,19 @@ describe('Six-player Triples Multi Battle', () => {
 		assert.equal(battle.p1.activeTeam().length, 3);
 		assert.equal(battle.p1.foes().length, 3);
 
-		battle.makeChoices('move 1', 'move 1', 'move 1', 'move 1', 'move 1', 'move 1');
+		battle.makeChoices('move 1 +3', 'move 1 +3', 'move 1 +2', 'move 1 +2', 'move 1 +1', 'move 1 +1');
 		assert.equal(battle.turn, 2);
+	});
+
+	it('should require an explicit target for single-target moves', () => {
+		battle = common.createBattle({ formatid: 'gen9natdexagtriple' }, [
+			team('Mew'), team('Mewtwo'), team('Celebi'),
+			team('Jirachi'), team('Victini'), team('Deoxys'),
+		]);
+		battle.makeChoices();
+
+		assert.throws(() => battle.p1.choose('move 1'), /Psychic needs a target/);
+		assert.doesNotThrow(() => battle.p1.choose('move 1 +3'));
 	});
 
 	it('should preserve the existing four-player Multi layout', () => {

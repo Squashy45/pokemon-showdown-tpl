@@ -679,7 +679,8 @@ export class Side {
 		if (autoChoose || moveid === 'testfight') {
 			targetLoc = 0;
 		} else if (this.battle.actions.targetTypeChoices(targetType)) {
-			if (!targetLoc && this.active.length >= 2) {
+			const needsExplicitTarget = this.active.length >= 2 || this.battle.format.id === 'gen9natdexagtriple';
+			if (!targetLoc && needsExplicitTarget) {
 				return this.emitChoiceError(`Can't move: ${move.name} needs a target`);
 			}
 			if (!this.battle.validTargetLoc(targetLoc, pokemon, targetType)) {
